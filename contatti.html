@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatti - Dolce Laguna</title>
+    <meta name="description" content="Contatta Dolce Laguna per prenotare il tuo soggiorno a Venezia">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset e stili base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f7f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: transparent;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            z-index: 1002;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.05);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-left: auto;
+        }
+
+        .book-now-btn {
+            background: #e89700;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        .book-now-btn:hover {
+            background: #942e2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            width: 44px;
+            height: 44px;
+            position: relative;
+            z-index: 1002;
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 2px;
+            background: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon::before,
+        .menu-icon::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon::before {
+            top: -8px;
+        }
+
+        .menu-icon::after {
+            bottom: -8px;
+        }
+
+        .header.scrolled .menu-icon,
+        .header.scrolled .menu-icon::before,
+        .header.scrolled .menu-icon::after {
+            background: #942e2f;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            z-index: 1001;
+            padding: 2rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu .logo {
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+        }
+
+        .mobile-menu.active .logo {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .mobile-nav-links li {
+            margin: 1.5rem 0;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active .mobile-nav-links li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .mobile-nav-links li:nth-child(1) { transition-delay: 0.2s; }
+        .mobile-nav-links li:nth-child(2) { transition-delay: 0.3s; }
+        .mobile-nav-links li:nth-child(3) { transition-delay: 0.4s; }
+        .mobile-nav-links li:nth-child(4) { transition-delay: 0.5s; }
+        .mobile-nav-links li:nth-child(5) { transition-delay: 0.6s; }
+
+        .mobile-nav-links a {
+            color: #942e2f;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            display: block;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-nav-links a:hover {
+            color: #e89700;
+            transform: scale(1.05);
+        }
+
+        .mobile-menu .book-now-btn {
+            margin-top: 3rem;
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s;
+        }
+
+        .mobile-menu.active .book-now-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #942e2f;
+            cursor: pointer;
+            padding: 0.5rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(0deg);
+            transition: all 0.3s ease;
+            z-index: 1002;
+            opacity: 0;
+        }
+
+        .mobile-menu.active .mobile-menu-close {
+            opacity: 1;
+            transition-delay: 0.3s;
+        }
+
+        .mobile-menu-close:hover {
+            transform: rotate(90deg);
+            color: #e89700;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+            transition: transform 0.8s ease;
+        }
+
+        .hero-section:hover .hero-image {
+            transform: scale(1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+        }
+
+        .hero-content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            color: #ffffff;
+        }
+
+        .title-underline {
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: #c8a97e;
+            margin: 1rem auto;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #942e2f;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #e89700;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        @media (min-width: 900px) {
+            .contact-info {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .contact-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(158,52,50,0.07);
+            padding: 2.2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 180px;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1.5px solid rgba(232,151,0,0.08);
+        }
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(158,52,50,0.12);
+        }
+        .contact-card .card-label {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #942e2f;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .contact-card .card-label i {
+            font-size: 1.8rem;
+            color: #942e2f;
+        }
+        .contact-card .card-main {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            text-transform: lowercase;
+        }
+        .contact-card .card-main a {
+            color: #444;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            text-transform: lowercase;
+        }
+        .contact-card .card-main a:hover {
+            color: #942e2f;
+        }
+        .contact-card .card-action {
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+        .contact-card .card-action a,
+        .contact-card .card-action button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.7rem 1.3rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            color: #942e2f;
+            background: none;
+            border: 1px solid #942e2f;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            min-height: 44px;
+            letter-spacing: 0.5px;
+        }
+        .contact-card .card-action a:hover,
+        .contact-card .card-action button:hover {
+            background: #942e2f;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(148,46,47,0.15);
+        }
+        .contact-card .card-action i {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        .contact-card .card-action .info-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #942e2f;
+            line-height: 1.6;
+        }
+        .contact-card .map-container {
+            margin-top: 1.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(148,46,47,0.1);
+        }
+
+        /* Referenti Section */
+        .referenti-section {
+            padding: 6rem 0;
+            background: #f9f7f4;
+        }
+
+        .referenti-section .section-title {
+            margin-bottom: 4rem;
+        }
+
+        .referente-card {
+            display: flex;
+            gap: 3rem;
+            background: #fff;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 4px 24px rgba(158,52,50,0.07);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .referente-card {
+                flex-direction: column;
+                padding: 2rem;
+                gap: 2rem;
+            }
+        }
+
+        .referente-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e8dcb4 0%, #9cd0e5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            color: #942e2f;
+            flex-shrink: 0;
+        }
+
+        .referente-details {
+            flex: 1;
+        }
+
+        .referente-name {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #942e2f;
+            margin-bottom: 0.5rem;
+        }
+
+        .referente-role {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #e89700;
+            margin-bottom: 2rem;
+        }
+
+        .referente-contact {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .referente-contact i {
+            font-size: 1.4rem;
+            color: #942e2f;
+        }
+
+        .referente-contact a {
+            color: #444;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .referente-contact a:hover {
+            color: #942e2f;
+        }
+
+        .referente-languages {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .referente-languages .languages-label {
+            font-family: 'Playfair Display', serif;
+            color: #444;
+            font-size: 1rem;
+        }
+
+        .language-flag {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid rgba(148,46,47,0.1);
+        }
+
+        .language-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Social Section */
+        .social-section {
+            padding: 6rem 0;
+            background: white;
+            text-align: center;
+        }
+
+        .social-description {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .social-link {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #f9f7f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9e3432;
+            font-size: 1.8rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #e89700;
+            transform: scale(0);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-link:hover::before {
+            transform: scale(1);
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #9e3432;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-img {
+            height: 50px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .footer-logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .company-info {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #c8a97e;
+        }
+
+        .footer-contacts {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-contacts li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .footer-contacts li i {
+            color: #c8a97e;
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+        .footer-contacts a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contacts a:hover {
+            color: #c8a97e;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #c8a97e;
+        }
+
+        .footer-map {
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Toast Notification */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .toast {
+            background: #28a745;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .header-content {
+                padding: 0.5rem 1rem;
+            }
+
+            .nav-links,
+            .book-now-btn {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-section {
+                height: 50vh;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .contact-icon {
+                margin-bottom: 1rem;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-section {
+                height: 40vh;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-label {
+                font-size: 1.3rem;
+            }
+
+            .contact-text {
+                font-size: 1.1rem;
+            }
+
+            .referente-name {
+                font-size: 1.8rem;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <img src="images/logo-dolcelaguna.png" alt="Dolce Laguna" class="logo-img" />
+            </a>
+            <div class="header-actions">
+                <a href="prenota.html" class="book-now-btn">Prenota Ora</a>
+                <button class="mobile-menu-btn" aria-label="Apri menu" aria-expanded="false">
+                    <span class="menu-icon"></span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu-overlay" tabindex="-1"></div>
+        <nav class="mobile-menu">
+            <div class="logo">
+                <img src="images/logo-dolcelaguna.png" alt="Dolce Laguna" class="logo-img" />
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="camere.html">Camere</a></li>
+                <li><a href="servizi.html">Servizi</a></li>
+                <li><a href="informazioni.html">Informazioni</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+            <a href="prenota.html" class="book-now-btn">Prenota Ora</a>
+            <button class="mobile-menu-close" aria-label="Chiudi menu">&times;</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <img src="images/IMG_8223.jpg" alt="Contattaci" class="hero-image">
+        </div>
+        <div class="container hero-content">
+            <h1 class="hero-title">
+                Contatti
+                <span class="title-underline"></span>
+            </h1>
+            <p class="hero-description">
+                Siamo qui per aiutarti a pianificare il tuo soggiorno perfetto a Venezia.
+                Non esitare a contattarci per qualsiasi informazione o richiesta.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>I Nostri Contatti</h2>
+            </div>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="card-label"><i class="fas fa-phone"></i> Telefono</div>
+                    <div class="card-main"><a href="tel:+393341817894">+39 334 181 7894</a></div>
+                    <div class="card-action">
+                        <a href="tel:+393341817894"><i class="fas fa-phone"></i> Chiamaci</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="card-label"><i class="fas fa-envelope"></i> Email</div>
+                    <div class="card-main"><a href="mailto:info@dolcelaguna.com">info@dolcelaguna.com</a></div>
+                    <div class="card-action">
+                        <a href="mailto:info@dolcelaguna.com"><i class="fas fa-envelope"></i> Scrivici</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="card-label"><i class="fas fa-map-marker-alt"></i> Indirizzo</div>
+                    <div class="card-main">via alessandria 43a, tessera (ve)</div>
+                    <div class="card-action">
+                        <button class="copy-address-btn" data-address="Via Alessandria 43a, Tessera (VE)">
+                            <i class="fas fa-copy"></i> Copia indirizzo
+                        </button>
+                    </div>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.3442782456584!2d12.327831376889761!3d45.50332197107633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477eb4c7a6b55555%3A0x8d87f65f4d94d894!2sDolce%20Laguna%20Affittacamere!5e0!3m2!1sit!2sit!4v1713633031123!5m2!1sit!2sit"
+                            width="100%"
+                            height="250"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Mappa di Dolce Laguna">
+                        </iframe>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="card-label"><i class="fas fa-clock"></i> Orari</div>
+                    <div class="card-main">check-in: 15:00 - 10:00<br>check-out: entro le 10:00</div>
+                    <div class="card-action">
+                        <div class="info-text">
+                            <div>Reception h24, deposito bagagli gratuito</div>
+                            <div>Check-in notturno consentito</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referenti Section -->
+    <section class="referenti-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>I Nostri Referenti</h2>
+            </div>
+            <div class="referente-card">
+                <div class="referente-avatar" aria-label="Avatar Sem">S</div>
+                <div class="referente-details">
+                    <div class="referente-name">Sem</div>
+                    <div class="referente-role">Responsabile Customer Care</div>
+                    <div class="referente-contact">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+393341817894">+39 334 181 7894</a>
+                    </div>
+                    <div class="referente-contact">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@dolcelaguna.com">info@dolcelaguna.com</a>
+                    </div>
+                    <div class="referente-contact">
+                        <i class="fas fa-clock"></i>
+                        <span>Disponibile h24</span>
+                    </div>
+                    <div class="referente-languages">
+                        <span class="languages-label">Lingue parlate:</span>
+                        <span class="language-flag"><img src="images/flags/it.svg" alt="Italiano"></span>
+                        <span class="language-flag"><img src="images/flags/gb.svg" alt="English"></span>
+                        <span class="language-flag"><img src="images/flags/fr.svg" alt="Français"></span>
+                        <span class="language-flag"><img src="images/flags/sa.svg" alt="العربية"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Seguici sui Social</h2>
+            </div>
+            <p class="social-description">
+                Resta aggiornato sulle nostre offerte speciali e scopri gli eventi nella magnifica Venezia seguendoci sui nostri canali social.
+            </p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo-dolcelaguna.png" alt="Dolce Laguna Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">Dolce Laguna</span>
+                    </div>
+                    <p class="company-info">
+                        DOLCE LAGUNA di FF Hospitality s.r.l.<br>
+                        Sede legale: Strada Statale 113, km 335, Alcamo (TP)<br>
+                        P.IVA: 02912450810<br>
+                        REA: TP - 205823
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Contatti</h3>
+                    <ul class="footer-contacts">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Via Alessandria 41/b - 30173 - CIN: IT027042B4CSA6DFBW</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Via Alessandria 43/a - 30173 - CIN: IT027042B4TDP8CF3K</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+393341817894">+39 334 181 7894</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@dolcelaguna.com">info@dolcelaguna.com</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="camere.html">Camere</a></li>
+                        <li><a href="servizi.html">Servizi</a></li>
+                        <li><a href="informazioni.html">Informazioni</a></li>
+                        <li><a href="contatti.html">Contatti</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">La nostra posizione</h3>
+                    <div class="footer-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.3442782456584!2d12.327831376889761!3d45.50332197107633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477eb4c7a6b55555%3A0x8d87f65f4d94d894!2sDolce%20Laguna%20Affittacamere!5e0!3m2!1sit!2sit!4v1713633031123!5m2!1sit!2sit"
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Mappa di Dolce Laguna">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>DOLCE LAGUNA di FF Hospitality s.r.l. - Tutti i diritti riservati</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast-container"></div>
+
+    <script>
+        // Copy Address Functionality
+        const copyButtons = document.querySelectorAll('.copy-address-btn');
+        const toastContainer = document.querySelector('.toast-container');
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            toastContainer.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const address = button.dataset.address;
+                navigator.clipboard.writeText(address).then(() => {
+                    button.innerHTML = '<i class="fas fa-check"></i><span>Copiato!</span>';
+                    button.classList.add('copied');
+                    showToast('Indirizzo copiato negli appunti!');
+
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="fas fa-copy"></i><span>Copia indirizzo</span>';
+                        button.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        });
+
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const body = document.body;
+
+        function toggleMenu() {
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+            mobileMenuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            if (window.innerWidth < 901) {
+                mobileMenuOverlay.classList.toggle('active');
+                body.style.overflow = isExpanded ? '' : 'hidden';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        mobileMenuClose.addEventListener('click', toggleMenu);
+
+        if (window.innerWidth < 901) {
+            mobileMenuOverlay.addEventListener('click', toggleMenu);
+        }
+
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth >= 901 && 
+                !mobileMenu.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target) && 
+                mobileMenu.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+
+        // Focus management per accessibilità
+        mobileMenu.addEventListener('keydown', e => {
+            if (e.key === 'Tab') {
+                const focusableElements = mobileMenu.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html> 

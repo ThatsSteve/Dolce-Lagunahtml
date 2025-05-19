@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Nostre Camere - Dolce Laguna</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/rooms.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="images/logo-dolcelaguna.png" alt="Dolce Laguna" class="logo-img">
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="rooms.html" class="active">Camere</a></li>
+                        <li><a href="services.html">Servizi</a></li>
+                        <li><a href="gallery.html">Galleria</a></li>
+                        <li><a href="contact.html">Contatti</a></li>
+                    </ul>
+                    <a href="booking.html" class="book-now-btn">Prenota Ora</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <span class="menu-icon"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <nav class="mobile-nav">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+                <li><a href="rooms.html" class="mobile-nav-link active">Camere</a></li>
+                <li><a href="services.html" class="mobile-nav-link">Servizi</a></li>
+                <li><a href="gallery.html" class="mobile-nav-link">Galleria</a></li>
+                <li><a href="contact.html" class="mobile-nav-link">Contatti</a></li>
+            </ul>
+            <a href="booking.html" class="mobile-book-now-btn">Prenota Ora</a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <img src="images/IMG_8223.jpg" alt="Camere Dolce Laguna" class="hero-image">
+            <div class="hero-overlay"></div>
+            <div class="hero-pattern"></div>
+            <div class="hero-dark-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-text">Le Nostre Camere</span>
+                <span class="title-underline"></span>
+            </h1>
+            <p class="hero-description">
+                Scopri il comfort e l'eleganza delle nostre camere, dove ogni dettaglio è stato curato per offrirti un soggiorno indimenticabile
+            </p>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section class="rooms-section">
+        <div class="container">
+            <!-- Structure Selector -->
+            <div class="structure-selector">
+                <button class="structure-btn active" data-structure="Dolce Laguna 1">Dolce Laguna 1</button>
+                <button class="structure-btn" data-structure="Dolce Laguna 2">Dolce Laguna 2</button>
+            </div>
+
+            <!-- Room Types Tabs -->
+            <div class="room-types-tabs">
+                <div class="tabs-list">
+                    <button class="tab-btn active" data-target="doppia">Camera Doppia</button>
+                    <button class="tab-btn" data-target="tripla">Camera Tripla</button>
+                    <button class="tab-btn" data-target="singola">Camera Singola</button>
+                    <button class="tab-btn" data-target="quadrupla">Camera Quadrupla</button>
+                </div>
+
+                <!-- Camera Doppia -->
+                <div id="doppia" class="tab-content active">
+                    <div class="room-type-info">
+                        <h2>Camera Doppia</h2>
+                        <p class="room-description">
+                            Tipologia di camera spaziosa restaurata di recente, con stile mediterraneo e di classe.
+                            Ideale per coppie o amici che viaggiano insieme.
+                        </p>
+                        <div class="room-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>2 persone</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-bed"></i>
+                                <span>1 letto matrimoniale o 2 letti singoli su richiesta</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-wifi"></i>
+                                <span>WiFi gratuito</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Servizi inclusi -->
+                        <h3 class="services-title">Servizi inclusi</h3>
+                        <div class="services-grid">
+                            <div class="service-item">
+                                <i class="fas fa-bath"></i>
+                                <span>Bagno privato con doccia e phon</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-snowflake"></i>
+                                <span>Aria climatizzata/riscaldamento</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-coffee"></i>
+                                <span>Minibar</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-wifi"></i>
+                                <span>Wi-Fi gratuito</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-desk"></i>
+                                <span>Scrivania</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-door-open"></i>
+                                <span>Accesso al giardino</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="room-cards">
+                        <!-- Camera Doppia Marrone -->
+                        <div class="room-card" data-room-id="doppia-marrone">
+                            <div class="room-image-container">
+                                <img src="images/Homepage/DL1/Marrone.jpg" alt="Camera Doppia Marrone" class="room-image">
+                                <button class="prev-image-btn"><i class="fas fa-chevron-left"></i></button>
+                                <button class="next-image-btn"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="room-info">
+                                <h3>Camera Doppia Marrone</h3>
+                                <p>Dolce Laguna 1 - Camera elegante con arredi in stile mediterraneo</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-tv"></i> TV Smart</span>
+                                    <span><i class="fas fa-wind"></i> Aria condizionata</span>
+                                    <span><i class="fas fa-wifi"></i> WiFi gratuito</span>
+                                </div>
+                                <button class="view-details-btn" data-room-id="doppia-marrone">Vedi Dettagli</button>
+                            </div>
+                        </div>
+
+                        <!-- Camera Doppia Blu -->
+                        <div class="room-card" data-room-id="doppia-blu">
+                            <div class="room-image-container">
+                                <img src="images/Homepage/DL1/Blu.jpg" alt="Camera Doppia Blu" class="room-image">
+                                <button class="prev-image-btn"><i class="fas fa-chevron-left"></i></button>
+                                <button class="next-image-btn"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="room-info">
+                                <h3>Camera Doppia Blu</h3>
+                                <p>Dolce Laguna 1 - Camera moderna con vista sulla città</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-tv"></i> TV Smart</span>
+                                    <span><i class="fas fa-wind"></i> Aria condizionata</span>
+                                    <span><i class="fas fa-wifi"></i> WiFi gratuito</span>
+                                </div>
+                                <button class="view-details-btn" data-room-id="doppia-blu">Vedi Dettagli</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Camera Tripla -->
+                <div id="tripla" class="tab-content">
+                    <div class="room-type-info">
+                        <h2>Camera Tripla</h2>
+                        <p class="room-description">
+                            Tipologia di camera ampia e luminosa, ideale per famiglie o piccoli gruppi, con tutti i comfort moderni.
+                            Perfetta per chi desidera spazio aggiuntivo.
+                        </p>
+                        <div class="room-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>3 persone</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-bed"></i>
+                                <span>1 letto matrimoniale + 1 letto singolo</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-wifi"></i>
+                                <span>WiFi gratuito</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Servizi inclusi -->
+                        <h3 class="services-title">Servizi inclusi</h3>
+                        <div class="services-grid">
+                            <div class="service-item">
+                                <i class="fas fa-bath"></i>
+                                <span>Bagno privato con doccia e phon</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-snowflake"></i>
+                                <span>Aria climatizzata/riscaldamento</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-coffee"></i>
+                                <span>Minibar</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-wifi"></i>
+                                <span>Wi-Fi gratuito</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-desk"></i>
+                                <span>Scrivania</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-door-open"></i>
+                                <span>Accesso al giardino</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="room-cards">
+                        <!-- Camera Tripla Verde -->
+                        <div class="room-card" data-room-id="tripla-verde">
+                            <div class="room-image-container">
+                                <img src="images/Homepage/DL1/Verde.jpg" alt="Camera Tripla Verde" class="room-image">
+                                <button class="prev-image-btn"><i class="fas fa-chevron-left"></i></button>
+                                <button class="next-image-btn"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="room-info">
+                                <h3>Camera Tripla Verde</h3>
+                                <p>Dolce Laguna 1 - Camera spaziosa con balcone</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-tv"></i> TV Smart</span>
+                                    <span><i class="fas fa-wind"></i> Aria condizionata</span>
+                                    <span><i class="fas fa-wifi"></i> WiFi gratuito</span>
+                                </div>
+                                <button class="view-details-btn" data-room-id="tripla-verde">Vedi Dettagli</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Camera Singola -->
+                <div id="singola" class="tab-content">
+                    <div class="room-type-info">
+                        <h2>Camera Singola</h2>
+                        <p class="room-description">
+                            Tipologia di camera singola moderna e funzionale, ideale per viaggiatori solitari.
+                            Con letto comodo, bagno privato e tutti i comfort essenziali.
+                        </p>
+                        <div class="room-details">
+                            <div class="detail-item">
+                                <i class="fas fa-user"></i>
+                                <span>1 persona</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-bed"></i>
+                                <span>1 letto singolo</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-wifi"></i>
+                                <span>WiFi gratuito</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Servizi inclusi -->
+                        <h3 class="services-title">Servizi inclusi</h3>
+                        <div class="services-grid">
+                            <div class="service-item">
+                                <i class="fas fa-bath"></i>
+                                <span>Bagno privato con doccia e phon</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-snowflake"></i>
+                                <span>Aria climatizzata/riscaldamento</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-coffee"></i>
+                                <span>Minibar</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-wifi"></i>
+                                <span>Wi-Fi gratuito</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-desk"></i>
+                                <span>Scrivania</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-door-open"></i>
+                                <span>Accesso al giardino</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="room-cards">
+                        <!-- Camera Singola Azzurra -->
+                        <div class="room-card" data-room-id="singola-azzurra">
+                            <div class="room-image-container">
+                                <img src="images/Homepage/DL2/azzurra.jpg" alt="Camera Singola Azzurra" class="room-image">
+                                <button class="prev-image-btn"><i class="fas fa-chevron-left"></i></button>
+                                <button class="next-image-btn"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="room-info">
+                                <h3>Camera Singola Azzurra</h3>
+                                <p>Dolce Laguna 2 - Camera luminosa con design contemporaneo</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-tv"></i> TV Smart</span>
+                                    <span><i class="fas fa-wind"></i> Aria condizionata</span>
+                                    <span><i class="fas fa-wifi"></i> WiFi gratuito</span>
+                                </div>
+                                <button class="view-details-btn" data-room-id="singola-azzurra">Vedi Dettagli</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Camera Quadrupla -->
+                <div id="quadrupla" class="tab-content">
+                    <div class="room-type-info">
+                        <h2>Camera Quadrupla</h2>
+                        <p class="room-description">
+                            Tipologia di camera quadrupla ampia e luminosa, ideale per famiglie, con terrazza privata e tutti i comfort.
+                            Perfetta per soggiorni in famiglia o gruppi di amici.
+                        </p>
+                        <div class="room-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>4 persone</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-bed"></i>
+                                <span>2 letti matrimoniali</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-wifi"></i>
+                                <span>WiFi gratuito</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Servizi inclusi -->
+                        <h3 class="services-title">Servizi inclusi</h3>
+                        <div class="services-grid">
+                            <div class="service-item">
+                                <i class="fas fa-bath"></i>
+                                <span>Bagno privato con doccia e phon</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-snowflake"></i>
+                                <span>Aria climatizzata/riscaldamento</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-coffee"></i>
+                                <span>Minibar</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-wifi"></i>
+                                <span>Wi-Fi gratuito</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-desk"></i>
+                                <span>Scrivania</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-door-open"></i>
+                                <span>Accesso al giardino</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="room-cards">
+                        <!-- Camera Quadrupla Suite 105 -->
+                        <div class="room-card" data-room-id="quadrupla-suite105">
+                            <div class="room-image-container">
+                                <img src="images/Suite 105/IMG_8148.jpg" alt="Camera Quadrupla Suite 105" class="room-image">
+                                <button class="prev-image-btn"><i class="fas fa-chevron-left"></i></button>
+                                <button class="next-image-btn"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="room-info">
+                                <h3>Camera Quadrupla Suite 105</h3>
+                                <p>Dolce Laguna 2 - Suite spaziosa con terrazza privata</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-tv"></i> TV Smart</span>
+                                    <span><i class="fas fa-wind"></i> Aria condizionata</span>
+                                    <span><i class="fas fa-wifi"></i> WiFi gratuito</span>
+                                </div>
+                                <button class="view-details-btn" data-room-id="quadrupla-suite105">Vedi Dettagli</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal per i dettagli della camera -->
+    <div class="modal" id="roomDetailsModal">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <div class="modal-body">
+                <!-- Il contenuto verrà popolato dinamicamente via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo-dolcelaguna.png" alt="Dolce Laguna Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">Dolce Laguna</span>
+                    </div>
+                    <p class="company-info">
+                        DOLCE LAGUNA di FF Hospitality s.r.l.<br>
+                        Sede legale: Strada Statale 113, km 335, Alcamo (TP)<br>
+                        P.IVA: 02912450810<br>
+                        REA: TP - 205823
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Contatti</h3>
+                    <ul class="footer-contacts">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Via Alessandria 41/b - 30173 - CIN: IT027042B4CSA6DFBW</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Via Alessandria 43/a - 30173 - CIN: IT027042B4TDP8CF3K</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+393341817894">+39 334 181 7894</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@dolcelaguna.com">info@dolcelaguna.com</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="rooms.html">Camere</a></li>
+                        <li><a href="services.html">Servizi</a></li>
+                        <li><a href="contact.html">Contatti</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">La nostra posizione</h3>
+                    <div class="footer-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.3442782456584!2d12.327831376889761!3d45.50332197107633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477eb4c7a6b55555%3A0x8d87f65f4d94d894!2sDolce%20Laguna%20Affittacamere!5e0!3m2!1sit!2sit!4v1713633031123!5m2!1sit!2sit"
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>DOLCE LAGUNA di FF Hospitality s.r.l. - Tutti i diritti riservati</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/rooms.js"></script>
+</body>
+</html> 
