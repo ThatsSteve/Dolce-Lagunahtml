@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dolce Laguna - Affittacamere di Lusso a Venezia</title>
+    <title>Dolce Laguna - Affittacamere a Venezia</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -1778,6 +1778,33 @@
                 font-size: 1rem;
             }
         }
+
+        /* Room Carousel Styles */
+        .room-carousel {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        .room-carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .room-carousel-slide.active {
+            opacity: 1;
+        }
+
+        .room-carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
@@ -1801,7 +1828,7 @@
             </div>
             <ul class="mobile-nav-links">
                 <li><a href="/">Home</a></li>
-                <li><a href="/camere.html">Camere</a></li>
+                <li><a href="/cameresoon.html">Camere</a></li>
                 <li><a href="/servizi.html">Servizi</a></li>
                 <li><a href="/contatti.html">Contatti</a></li>
                 <li><a href="/informazioni.html">Informazioni</a></li>
@@ -1968,7 +1995,17 @@
                 <!-- Camere Doppie -->
                 <div class="room-card">
                     <div class="room-image">
-                        <img src="/images/homepage/DL1/Marrone.jpg" alt="Camere Doppie">
+                        <div class="room-carousel">
+                            <div class="room-carousel-slide active">
+                                <img src="/images/homepage/DL1/Marrone.jpg" alt="Camera Doppia Marrone">
+                            </div>
+                            <div class="room-carousel-slide">
+                                <img src="/images/Camera Pavone/WhatsApp Image 2025-04-28 at 15.55.29_8d6dc86e.jpg" alt="Camera Doppia Pavone">
+                            </div>
+                            <div class="room-carousel-slide">
+                                <img src="/images/Camera Blu Deluxe/830.jpg" alt="Camera Doppia Blu Deluxe">
+                            </div>
+                        </div>
                     </div>
                     <div class="room-content">
                         <h3 class="room-title">Camere Doppie</h3>
@@ -1977,14 +2014,14 @@
                             <span class="room-feature">Wifi Veloce</span>
                             <span class="room-feature">Scrivania</span>
                             <span class="room-feature">Minibar</span>
-                            </div>
-                            </div>
                         </div>
+                    </div>
+                </div>
 
                 <!-- Camera Tripla -->
                 <div class="room-card">
                     <div class="room-image">
-                        <img src="/images/homepage/DL1/Bludeluxe.jpg" alt="Camera Tripla">
+                        <img src="/images/Tripla DL1/79865951.jpg" alt="Camera Tripla">
                     </div>
                     <div class="room-content">
                         <h3 class="room-title">Camera Tripla</h3>
@@ -1995,8 +2032,8 @@
                             <span class="room-feature">Minibar</span>
                         </div>
                     </div>
-                    </div>
                 </div>
+            </div>
 
             <div class="rooms-grid" id="dl2-rooms">
                 <!-- Camera Singola -->
@@ -2048,7 +2085,7 @@
                         </div>
                     </div>
 
-            <a href="rooms.html" class="view-all-btn">Visualizza Tutte le Camere</a>
+            <a href="camere.html" class="view-all-btn">Visualizza Tutte le Camere</a>
                 </div>
     </section>
 
@@ -2069,8 +2106,8 @@
                         <h3 class="space-title">Reception</h3>
                         <p class="space-description">La nostra accogliente reception è il punto di partenza per il vostro soggiorno indimenticabile.</p>
                         <div class="space-features">
-                            <span class="space-feature">🕒 Accoglienza 24/7</span>
-                            <span class="space-feature">👨‍💼 Concierge</span>
+                            <span class="space-feature">🕒 Reperibilità 24/7</span>
+                            <span class="space-feature">👨‍💼 Assistenza Telefonica</span>
                             <span class="space-feature">🧳 Servizio bagagli</span>
                         </div>
                     </div>
@@ -2196,7 +2233,7 @@
                     <h3 class="footer-title">Links</h3>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="camere.html">Camere</a></li>
+                        <li><a href="cameresoon.html">Camere</a></li>
                         <li><a href="servizi.html">Servizi</a></li>
                         <li><a href="informazioni.html">Informazioni</a></li>
                         <li><a href="contatti.html">Contatti</a></li>
@@ -2462,7 +2499,7 @@
             reception: {
                 title: 'Reception',
                 description: 'La nostra accogliente reception è il punto di partenza per il vostro soggiorno indimenticabile.',
-                features: ['🕒 Accoglienza 24/7', '👨‍💼 Concierge', '🧳 Servizio bagagli']
+                features: ['🕒 Reperibilità 24/7', '👨‍💼 Assistenza', '🧳 Servizio bagagli']
             },
             lounge: {
                 title: 'Lounge',
@@ -2776,6 +2813,36 @@
                 }
             }
         });
+
+        // Room Carousel Functionality
+        function initRoomCarousels() {
+            const roomCarousels = document.querySelectorAll('.room-carousel');
+            
+            roomCarousels.forEach(carousel => {
+                const slides = carousel.querySelectorAll('.room-carousel-slide');
+                let currentSlide = 0;
+
+                function updateSlides() {
+                    slides.forEach((slide, index) => {
+                        if (index === currentSlide) {
+                            slide.classList.add('active');
+                        } else {
+                            slide.classList.remove('active');
+                        }
+                    });
+                }
+
+                function nextSlide() {
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    updateSlides();
+                }
+
+                setInterval(nextSlide, 3000);
+            });
+        }
+
+        // Initialize room carousels when the page loads
+        document.addEventListener('DOMContentLoaded', initRoomCarousels);
     </script>
 </body>
 </html>
