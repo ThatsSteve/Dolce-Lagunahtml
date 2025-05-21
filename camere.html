@@ -562,9 +562,9 @@
                         <!-- Camera Doppia Marrone -->
                         <div class="room-card" data-room-id="doppia-marrone">
                             <div class="room-image-container">
-                                <img src="images/Homepage/DL1/Marrone.jpg" alt="Camera Doppia Marrone" class="room-image">
-                                <button class="prev-image-btn"><i class="fas fa-chevron-left"></i></button>
-                                <button class="next-image-btn"><i class="fas fa-chevron-right"></i></button>
+                                <img src="images/Camera Marrone/741.jpg" alt="Camera Doppia Marrone" class="room-image" id="marrone-image">
+                                <button class="prev-image-btn" onclick="changeImage('marrone', -1)"><i class="fas fa-chevron-left"></i></button>
+                                <button class="next-image-btn" onclick="changeImage('marrone', 1)"><i class="fas fa-chevron-right"></i></button>
                             </div>
                             <div class="room-info">
                                 <h3>Camera Doppia Marrone</h3>
@@ -581,9 +581,9 @@
                         <!-- Camera Doppia Blu -->
                         <div class="room-card" data-room-id="doppia-blu">
                             <div class="room-image-container">
-                                <img src="images/Homepage/DL1/Blu.jpg" alt="Camera Doppia Blu" class="room-image">
-                                <button class="prev-image-btn"><i class="fas fa-chevron-left"></i></button>
-                                <button class="next-image-btn"><i class="fas fa-chevron-right"></i></button>
+                                <img src="images/Camera Blu/IMG_8003.jpg" alt="Camera Doppia Blu" class="room-image" id="blu-image">
+                                <button class="prev-image-btn" onclick="changeImage('blu', -1)"><i class="fas fa-chevron-left"></i></button>
+                                <button class="next-image-btn" onclick="changeImage('blu', 1)"><i class="fas fa-chevron-right"></i></button>
                             </div>
                             <div class="room-info">
                                 <h3>Camera Doppia Blu</h3>
@@ -656,9 +656,9 @@
                         <!-- Camera Tripla Verde -->
                         <div class="room-card" data-room-id="tripla-verde">
                             <div class="room-image-container">
-                                <img src="images/Homepage/DL1/Verde.jpg" alt="Camera Tripla Verde" class="room-image">
-                                <button class="prev-image-btn"><i class="fas fa-chevron-left"></i></button>
-                                <button class="next-image-btn"><i class="fas fa-chevron-right"></i></button>
+                                <img src="images/Tripla DL1/IMG_8081.jpg" alt="Camera Tripla Verde" class="room-image" id="verde-image">
+                                <button class="prev-image-btn" onclick="changeImage('verde', -1)"><i class="fas fa-chevron-left"></i></button>
+                                <button class="next-image-btn" onclick="changeImage('verde', 1)"><i class="fas fa-chevron-right"></i></button>
                             </div>
                             <div class="room-info">
                                 <h3>Camera Tripla Verde</h3>
@@ -731,9 +731,9 @@
                         <!-- Camera Singola Azzurra -->
                         <div class="room-card" data-room-id="singola-azzurra">
                             <div class="room-image-container">
-                                <img src="images/Homepage/DL2/azzurra.jpg" alt="Camera Singola Azzurra" class="room-image">
-                                <button class="prev-image-btn"><i class="fas fa-chevron-left"></i></button>
-                                <button class="next-image-btn"><i class="fas fa-chevron-right"></i></button>
+                                <img src="images/Camera Azzurra 3/IMG_7993.jpg" alt="Camera Singola Azzurra" class="room-image" id="azzurra-image">
+                                <button class="prev-image-btn" onclick="changeImage('azzurra', -1)"><i class="fas fa-chevron-left"></i></button>
+                                <button class="next-image-btn" onclick="changeImage('azzurra', 1)"><i class="fas fa-chevron-right"></i></button>
                             </div>
                             <div class="room-info">
                                 <h3>Camera Singola Azzurra</h3>
@@ -806,9 +806,9 @@
                         <!-- Camera Quadrupla Suite 105 -->
                         <div class="room-card" data-room-id="quadrupla-suite105">
                             <div class="room-image-container">
-                                <img src="images/Suite 105/IMG_8148.jpg" alt="Camera Quadrupla Suite 105" class="room-image">
-                                <button class="prev-image-btn"><i class="fas fa-chevron-left"></i></button>
-                                <button class="next-image-btn"><i class="fas fa-chevron-right"></i></button>
+                                <img src="images/Suite 105/IMG_8148.jpg" alt="Camera Quadrupla Suite 105" class="room-image" id="suite-image">
+                                <button class="prev-image-btn" onclick="changeImage('suite', -1)"><i class="fas fa-chevron-left"></i></button>
+                                <button class="next-image-btn" onclick="changeImage('suite', 1)"><i class="fas fa-chevron-right"></i></button>
                             </div>
                             <div class="room-info">
                                 <h3>Camera Quadrupla Suite 105</h3>
@@ -927,6 +927,68 @@
                 w.onload = loader;
             }
         })(window, document);
+    </script>
+    
+    <script>
+        // Array con le immagini per ogni camera
+        const roomImages = {
+            'marrone': [
+                'images/Camera Marrone/741.jpg',
+                'images/Camera Marrone/744.jpg'
+            ],
+            'blu': [
+                'images/Camera Blu/IMG_8003.jpg',
+                'images/Camera Blu/IMG_8004.jpg',
+                'images/Camera Blu/IMG_8005.jpg'
+            ],
+            'verde': [
+                'images/Tripla DL1/IMG_8081.jpg',
+                'images/Tripla DL1/IMG_8082.jpg',
+                'images/Tripla DL1/IMG_8083.jpg'
+            ],
+            'azzurra': [
+                'images/Camera Azzurra 3/IMG_7993.jpg',
+                'images/Camera Azzurra 3/IMG_7994.jpg',
+                'images/Camera Azzurra 3/IMG_7995.jpg'
+            ],
+            'suite': [
+                'images/Suite 105/IMG_8148.jpg',
+                'images/Suite 105/IMG_8136.jpg',
+                'images/Suite 105/IMG_8123.jpg',
+                'images/Suite 105/159.jpg',
+                'images/Suite 105/149.jpg',
+                'images/Suite 105/144.jpg',
+                'images/Suite 105/102.jpg'
+            ]
+        };
+
+        // Indici correnti per ogni camera
+        const currentImageIndex = {
+            'marrone': 0,
+            'blu': 0,
+            'verde': 0,
+            'azzurra': 0,
+            'suite': 0
+        };
+
+        // Funzione per cambiare immagine
+        function changeImage(roomType, direction) {
+            // Aggiorna l'indice dell'immagine corrente
+            currentImageIndex[roomType] = (currentImageIndex[roomType] + direction + roomImages[roomType].length) % roomImages[roomType].length;
+            
+            // Aggiorna l'immagine visualizzata
+            document.getElementById(`${roomType}-image`).src = roomImages[roomType][currentImageIndex[roomType]];
+        }
+
+        // Inizializzazione
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inizializza ogni camera con la prima immagine
+            for (const roomType in roomImages) {
+                if (document.getElementById(`${roomType}-image`)) {
+                    document.getElementById(`${roomType}-image`).src = roomImages[roomType][0];
+                }
+            }
+        });
     </script>
 </body>
 </html> 
