@@ -106,9 +106,11 @@
 
         .carousel-title {
             font-family: 'Cinzel', serif;
-            font-size: 3.2rem;
+            font-size: 3.4rem; /* Ridotto del 15% da 4rem */
+            color: white;
+            text-align: center;
             margin-bottom: 1.5rem;
-            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .title-underline {
@@ -170,9 +172,10 @@
 
         /* Chi Siamo Section aggiornata */
         .about-section {
-            padding: 2rem 0;
+            padding: 1rem 0;
             background: #f9f7f4;
             overflow: hidden;
+            margin-top: 2rem; /* Aggiunto margine superiore */
         }
 
         .about-content {
@@ -184,9 +187,9 @@
 
         .about-text {
             padding: 2rem;
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s ease-out;
+            opacity: 1; /* Impostato a 1 per renderlo immediatamente visibile */
+            transform: none; /* Rimosso il transform iniziale */
+            transition: none; /* Rimosso il transition */
         }
 
         .about-text.visible {
@@ -199,9 +202,9 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            transform: translateX(50px);
-            opacity: 0;
-            transition: all 0.8s ease-out;
+            opacity: 1; /* Impostato a 1 per renderlo immediatamente visibile */
+            transform: none; /* Rimosso il transform iniziale */
+            transition: none; /* Rimosso il transition */
             aspect-ratio: 4/3;
         }
 
@@ -973,7 +976,8 @@
             padding: 1rem;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            position: relative;
         }
 
         .logo {
@@ -1008,12 +1012,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
+            animation: pulse 2s infinite;
         }
 
-        .book-now-btn:hover {
-            background: #942e2f;
-            transform: translateY(-2px);
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(232, 151, 0, 0.4);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(232, 151, 0, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(232, 151, 0, 0);
+            }
         }
 
         .mobile-menu-btn {
@@ -1031,10 +1045,10 @@
         .menu-icon {
             width: 24px;
             height: 2px;
-            background: white;
+            background: #942e2f;
             position: absolute;
             top: 50%;
-                left: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
             transition: all 0.3s ease;
         }
@@ -1045,7 +1059,7 @@
             position: absolute;
             width: 24px;
             height: 2px;
-            background: white;
+            background: #942e2f;
             transition: all 0.3s ease;
         }
 
@@ -1060,6 +1074,22 @@
         .header.scrolled .menu-icon,
         .header.scrolled .menu-icon::before,
         .header.scrolled .menu-icon::after {
+            background: #942e2f;
+        }
+
+        .mobile-menu-btn.active .menu-icon {
+            background: transparent;
+        }
+
+        .mobile-menu-btn.active .menu-icon::before {
+            transform: rotate(45deg);
+            top: 0;
+            background: #942e2f;
+        }
+
+        .mobile-menu-btn.active .menu-icon::after {
+            transform: rotate(-45deg);
+            bottom: 0;
             background: #942e2f;
         }
 
@@ -1089,7 +1119,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-                justify-content: center;
+            justify-content: center;
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         }
 
@@ -1098,13 +1128,20 @@
         }
 
         .mobile-menu .logo {
+            display: none;
+        }
+
+        .mobile-menu .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #942e2f;
             margin-bottom: 3rem;
             opacity: 0;
             transform: translateY(-20px);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
         }
 
-        .mobile-menu.active .logo {
+        .mobile-menu.active .logo-text {
             opacity: 1;
             transform: translateY(0);
         }
@@ -1114,12 +1151,13 @@
             padding: 0;
             margin: 0;
             text-align: center;
+            width: 100%;
         }
 
         .mobile-nav-links li {
             margin: 1.5rem 0;
             opacity: 0;
-            transform: translateX(30px);
+            transform: translateX(50px);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -1127,12 +1165,6 @@
             opacity: 1;
             transform: translateX(0);
         }
-
-        .mobile-nav-links li:nth-child(1) { transition-delay: 0.2s; }
-        .mobile-nav-links li:nth-child(2) { transition-delay: 0.3s; }
-        .mobile-nav-links li:nth-child(3) { transition-delay: 0.4s; }
-        .mobile-nav-links li:nth-child(4) { transition-delay: 0.5s; }
-        .mobile-nav-links li:nth-child(5) { transition-delay: 0.6s; }
 
         .mobile-nav-links a {
             color: #942e2f;
@@ -1148,22 +1180,18 @@
             justify-content: center;
         }
 
-        .mobile-nav-links a:hover {
-            color: #e89700;
-            transform: scale(1.05);
-        }
-
         .mobile-menu .book-now-btn {
             margin-top: 3rem;
             font-size: 1.2rem;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateX(50px);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s;
+            animation: pulse 2s infinite;
         }
 
         .mobile-menu.active .book-now-btn {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0);
         }
 
         .mobile-menu-close {
@@ -1298,75 +1326,71 @@
             overflow: hidden;
         }
 
-        .reviews-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0z' fill='%23942e2f' fill-opacity='0.05'/%3E%3C/svg%3E");
-            background-size: 60px 60px;
-            opacity: 0.5;
-            z-index: 0;
+        .reviews-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .license-numbers {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            color: #942e2f;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
         .tripadvisor-cert {
             text-align: center;
-            margin-top: 4rem;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 3rem;
         }
 
         .tripadvisor-cert img {
             max-width: 200px;
             height: auto;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
-            transition: transform 0.3s ease;
-        }
-
-        .tripadvisor-cert img:hover {
-            transform: scale(1.05);
         }
 
         .reviews-carousel {
             position: relative;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 5rem;
+            padding: 0 3rem;
         }
 
         .reviews-container {
             position: relative;
-            height: 400px;
-        }
-
-        .review-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
             background: white;
             padding: 3rem;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            min-height: 350px;
+            overflow: hidden;
+        }
+
+        .review-slide {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            padding: 3rem;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            text-align: center;
         }
 
         .review-slide.active {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
         }
 
         .review-text {
             font-style: italic;
             color: #666;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             line-height: 1.8;
             font-size: 1.2rem;
             position: relative;
@@ -1400,72 +1424,60 @@
             margin-bottom: 0.5rem;
         }
 
-        .review-date {
+        .review-rating {
+            color: #e89700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-travel-type {
             color: #999;
             font-size: 1rem;
-            margin-bottom: 1.5rem;
         }
 
         .carousel-nav {
             display: flex;
-                justify-content: center;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
         .carousel-dot {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            background: #ddd;
+            background: rgba(148, 46, 47, 0.3);
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            padding: 6px;
-            margin: 0;
+            border: none;
+            padding: 0;
         }
 
-        .carousel-dot::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            width: 100%;
-            height: 100%;
+        .carousel-dot.active {
             background: #942e2f;
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-        }
-
-        .carousel-dot.active::before {
-            transform: translate(-50%, -50%) scale(1);
+            transform: scale(1.2);
         }
 
         .carousel-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            color: #942e2f;
-            width: 50px;
-            height: 50px;
+            background: #942e2f;
+            color: white;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
+            border: none;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             z-index: 2;
-            overflow: visible;
         }
 
         .carousel-arrow:hover {
-            background: #942e2f;
-            color: white;
-            transform: translateY(-50%) scale(1.1);
+            background: #e89700;
         }
 
         .carousel-prev {
@@ -1478,22 +1490,19 @@
 
         .view-all-reviews {
             text-align: center;
-            margin-top: 4rem;
-            position: relative;
-            z-index: 1;
+            margin-top: 2.5rem;
         }
 
         .view-all-reviews a {
-            color: #e89700;
+            color: #942e2f;
             text-decoration: none;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.32rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
             font-weight: 600;
             transition: all 0.3s ease;
             position: relative;
-            width: fit-content;
-            padding: 0.5rem 0;
             display: inline-block;
+            padding-bottom: 0.3rem;
         }
 
         .view-all-reviews a::after {
@@ -1503,7 +1512,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: #e89700;
+            background: #942e2f;
             transform: scaleX(1);
             transform-origin: left;
             transition: transform 0.3s ease;
@@ -1511,6 +1520,62 @@
 
         .view-all-reviews a:hover {
             color: #e89700;
+        }
+
+        .view-all-reviews a:hover::after {
+            background: #e89700;
+            transform: scaleX(1.1);
+        }
+
+        @media screen and (max-width: 768px) {
+            .reviews-section {
+                padding: 3rem 0;
+            }
+
+            .reviews-description {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .reviews-carousel {
+                padding: 0 2rem;
+            }
+
+            .reviews-container {
+                padding: 2rem 1rem;
+                min-height: 380px;
+            }
+
+            .review-slide {
+                padding: 1rem;
+            }
+
+            .review-text {
+                font-size: 1rem;
+                padding: 0 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .review-author {
+                font-size: 1.1rem;
+            }
+
+            .review-rating {
+                font-size: 1rem;
+            }
+
+            .review-travel-type {
+                font-size: 0.9rem;
+            }
+
+            .carousel-arrow {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .view-all-reviews a {
+                font-size: 1.1rem;
+            }
         }
 
         /* Elementi Mediterranei */
@@ -1624,10 +1689,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
             opacity: 0;
             transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .feature-modal.active {
@@ -1639,11 +1705,11 @@
             position: relative;
             background: white;
             width: 90%;
-            max-width: 600px;
+            max-width: 800px;
             margin: auto;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             transform: translateY(20px);
             transition: transform 0.3s ease;
             max-height: 90vh;
@@ -1656,23 +1722,26 @@
 
         .feature-modal-close {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(148, 46, 47, 0.1);
             border: none;
-                font-size: 2rem;
+            font-size: 2rem;
             color: #942e2f;
             cursor: pointer;
-            padding: 0.5rem;
-            width: 44px;
-            height: 44px;
+            padding: 0;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            border-radius: 50%;
+            z-index: 1000;
         }
 
         .feature-modal-close:hover {
+            background: rgba(148, 46, 47, 0.2);
             color: #e89700;
             transform: rotate(90deg);
         }
@@ -1680,30 +1749,49 @@
         .feature-modal-title {
             font-family: 'Cinzel', serif;
             color: #942e2f;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
             padding-right: 3rem;
+            position: relative;
+        }
+
+        .feature-modal-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #e89700;
         }
 
         .feature-modal-body {
             color: #666;
             line-height: 1.8;
             margin-bottom: 2rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .feature-modal-map {
             width: 100%;
-            height: 300px;
-            margin-bottom: 2rem;
-            border-radius: 10px;
+            height: 400px;
+            margin: 2rem 0;
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-modal-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .feature-modal-actions {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .feature-modal-btn {
@@ -1721,11 +1809,13 @@
             align-items: center;
             justify-content: center;
             min-height: 44px;
+            box-shadow: 0 4px 15px rgba(232, 151, 0, 0.3);
         }
 
         .feature-modal-btn:hover {
             background: #942e2f;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(148, 46, 47, 0.3);
         }
 
         .feature-modal-btn.copy-btn {
@@ -1812,6 +1902,127 @@
             height: 100%;
             object-fit: cover;
         }
+
+        /* Miglioramento sezione recensioni per mobile */
+        @media screen and (max-width: 768px) {
+            .reviews-section {
+                padding: 3rem 0;
+            }
+
+            .reviews-carousel {
+                padding: 0 1rem;
+            }
+
+            .review-slide {
+                padding: 1.5rem;
+                height: auto;
+                min-height: 300px;
+            }
+
+            .review-text {
+                font-size: 1rem;
+                padding: 0 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .review-author {
+                font-size: 1.1rem;
+            }
+
+            .review-rating {
+                font-size: 1rem;
+            }
+
+            .review-travel-type {
+                font-size: 0.9rem;
+            }
+
+            .carousel-arrow {
+                padding: 0.5rem;
+                font-size: 1.2rem;
+            }
+
+            .carousel-nav {
+                bottom: 1rem;
+            }
+
+            .carousel-dot {
+                width: 8px;
+                height: 8px;
+                margin: 0 3px;
+            }
+        }
+
+        /* Miglioramento popup feature per mobile */
+        @media screen and (max-width: 768px) {
+            .feature-modal-content {
+                width: 95%;
+                margin: 1rem;
+                padding: 1.5rem;
+                max-height: 85vh;
+            }
+
+            .feature-modal-title {
+                font-size: 1.5rem;
+                padding-right: 2rem;
+            }
+
+            .feature-modal-body {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .feature-modal-map {
+                height: 250px;
+                margin: 1.5rem 0;
+            }
+
+            .feature-modal-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .feature-modal-btn {
+                width: 100%;
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Miglioramento switch strutture per mobile */
+        @media screen and (max-width: 768px) {
+            .rooms-filter {
+                flex-direction: row;
+                padding: 0.3rem;
+                width: 90%;
+                margin: 2rem auto;
+            }
+
+            .filter-btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
+        }
+
+        /* Animazione switch strutture migliorata */
+        .rooms-grid {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: none;
+        }
+
+        .rooms-grid.active {
+            opacity: 1;
+            transform: translateY(0);
+            display: grid;
+        }
+
+        /* Rimozione X dal menu mobile */
+        .mobile-menu-close {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -1837,6 +2048,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/cameresoon.html">Camere</a></li>
                 <li><a href="/servizi.html">Servizi</a></li>
+                <li><a href="/galleria.html">Galleria</a></li>
                 <li><a href="/contatti.html">Contatti</a></li>
                 <li><a href="/informazioni.html">Informazioni</a></li>
             </ul>
@@ -1878,24 +2090,6 @@
         </div>
     </section>
 
-    <!-- Chi Siamo Section -->
-    <section class="about-section section-spacing">
-        <div class="mediterranean-pattern"></div>
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Chi Siamo</h3>
-                    <p>Dolce Laguna è un Bed & Breakfast situato a Tessera, a soli 800 metri dall'Aeroporto Marco Polo di Venezia. La nostra struttura è la meta ideale sia per il turismo che per chi viaggia per lavoro, grazie alla posizione strategica che consente di raggiungere comodamente il centro di Venezia in circa 15 minuti di auto e di usufruire di collegamenti rapidi verso le principali attrazioni della terraferma.
-
-                        Le camere, dallo stile mediterraneo e curate in ogni dettaglio, garantiscono il massimo comfort e versatilità, con orari di check-in e check-out flessibili, perfetti anche per chi ha voli in orari scomodi. Dolce Laguna offre numerosi servizi esclusivi, un ambiente accogliente e raffinato, per rendere ogni soggiorno pratico, piacevole e indimenticabile.</p>
-                        </div>
-                <div class="about-image">
-                    <img src="images/Homepage/Chi_siamo/009.jpg" alt="Dolce Laguna">
-                        </div>
-                        </div>
-                        </div>
-    </section>
-
     <!-- Perché Sceglierci Section -->
     <section class="why-us-section section-spacing">
         <div class="mediterranean-pattern"></div>
@@ -1912,8 +2106,8 @@
                 </div>
                 <div class="feature-card" data-feature="service">
                     <i class="fas fa-concierge-bell feature-icon"></i>
-                    <h3 class="feature-title">Servizio al top</h3>
-                    <p>Concierge 24/7 e servizi personalizzati per un soggiorno perfetto.</p>
+                    <h3 class="feature-title">Reperibilità Costante</h3>
+                    <p>Assistenza 24/7 e servizi personalizzati per un soggiorno indimenticabile.</p>
                 </div>
                 <div class="feature-card" data-feature="rooms">
                     <i class="fas fa-spa feature-icon"></i>
@@ -1922,71 +2116,37 @@
                 </div>
                 <div class="feature-card" data-feature="food">
                     <i class="fas fa-utensils feature-icon"></i>
-                    <h3 class="feature-title">Area ristoro</h3>
-                    <p>Colazioni e Snack, e Bevande un una zona di Relax sempre Disponibile </p>
+                    <h3 class="feature-title">Area ristoro h24</h3>
+                    <p>Colazioni, Snack, e Bevande in una zona di Relax sempre Disponibile </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Feature Modal -->
-    <div class="feature-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="feature-modal-content">
-            <button class="feature-modal-close" aria-label="Chiudi">&times;</button>
-            <h2 id="modal-title" class="feature-modal-title"></h2>
-            <div class="feature-modal-body"></div>
-            <div class="feature-modal-map"></div>
-            <div class="feature-modal-actions"></div>
-        </div>
-    </div>
 
     <!-- Reviews Section -->
-    <section class="reviews-section section-spacing" style="display: none;">
+    <section class="reviews-section section-spacing">
         <div class="mediterranean-pattern"></div>
         <div class="container">
             <div class="section-title">
                 <h2>Qualità Approvata</h2>
             </div>
+            <p class="reviews-description">
+                Nel 2019, Dolce Laguna ha ottenuto il Certificato di Eccellenza TripAdvisor, riconoscimento della nostra dedizione alla qualità dei servizi, alla pulizia meticolosa e alla flessibilità degli orari di check-in e check-out, pensati per offrire il massimo comfort anche in caso di imprevisti di viaggio.
+            </p>
+            <div class="license-numbers">
+                027042LOC05863<br>
+                IT027042B4QGSEVXLE
+            </div>
             <div class="tripadvisor-cert">
                 <img src="images/Homepage/Certificato Tripadvisor 2019 DL.png" alt="Certificato Tripadvisor 2019">
             </div>
-            <div class="reviews-carousel">
-                <button class="carousel-arrow carousel-prev" aria-label="Recensione precedente">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-arrow carousel-next" aria-label="Recensione successiva">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-                <div class="reviews-container">
-                    <div class="review-slide">
-                        <p class="review-text">"Esperienza meravigliosa! La posizione è perfetta, le camere sono bellissime e il personale è estremamente cordiale e disponibile."</p>
-                        <p class="review-author">Maria Rossi</p>
-                        <p class="review-date">Gennaio 2024</p>
-                    </div>
-                    <div class="review-slide">
-                        <p class="review-text">"Un'oasi di pace nel cuore di Venezia. La colazione è eccellente e le camere sono curate nei minimi dettagli."</p>
-                        <p class="review-author">Luca Bianchi</p>
-                        <p class="review-date">Febbraio 2024</p>
-                    </div>
-                    <div class="review-slide">
-                        <p class="review-text">"Soggiorno perfetto! La struttura è elegante e confortevole, il personale è professionale e attento alle esigenze degli ospiti."</p>
-                        <p class="review-author">Giulia Verdi</p>
-                        <p class="review-date">Marzo 2024</p>
-                    </div>
-                </div>
-                <div class="carousel-nav" role="tablist">
-                    <button class="carousel-dot active" role="tab" aria-label="Recensione 1" aria-selected="true"></button>
-                    <button class="carousel-dot" role="tab" aria-label="Recensione 2" aria-selected="false"></button>
-                    <button class="carousel-dot" role="tab" aria-label="Recensione 3" aria-selected="false"></button>
-                </div>
-            </div>
             <div class="view-all-reviews">
-                <a href="https://www.tripadvisor.it/Hotel_Review-g1095736-d11620676-Reviews-Dolce_Laguna-Tessera_Veneto.html" target="_blank" rel="noopener noreferrer">Leggi tutte le recensioni su Tripadvisor</a>
+                <a href="https://www.tripadvisor.it/Hotel_Review-g1095736-d11620676-Reviews-or5-Dolce_Laguna-Tessera_Veneto.html" target="_blank" rel="noopener noreferrer">Vedi Tutte le Recensioni</a>
             </div>
         </div>
     </section>
-
-   <!-- Sezione Camere -->
+    <!-- Sezione Camere -->
     <section class="rooms-section section-spacing">
         <div class="mediterranean-pattern"></div>
         <div class="venetian-wave"></div>
@@ -2020,7 +2180,7 @@
                         <div class="room-features">
                             <span class="room-feature">Wifi Veloce</span>
                             <span class="room-feature">Scrivania</span>
-                            <span class="room-feature">Minibar</span>
+                            <span class="room-feature">Frigorifero</span>
                         </div>
                     </div>
                 </div>
@@ -2036,7 +2196,7 @@
                         <div class="room-features">
                             <span class="room-feature">Wifi Veloce</span>
                             <span class="room-feature">Scrivania</span>
-                            <span class="room-feature">Minibar</span>
+                            <span class="room-feature">Frigorifero</span>
                         </div>
                     </div>
                 </div>
@@ -2185,7 +2345,29 @@
                 </div>
             </div>
         </div>
+        <div class="view-all-gallery" style="margin-bottom: 0;">
+            <a href="galleria.html" class="view-all-btn" style="margin-bottom: 0;">Visualizza la Galleria</a>
+        </div>
     </section>
+    <!-- Chi Siamo Section -->
+    <section class="about-section section-spacing" style="margin-top: 0; padding-top: 0;">
+        <div class="mediterranean-pattern"></div>
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Chi Siamo</h3>
+                    <p>Dolce Laguna è un Affittacamere situato a Tessera, a soli 800 metri dall'Aeroporto Marco Polo di Venezia. La nostra struttura è la meta ideale sia per il turismo che per chi viaggia per lavoro, grazie alla posizione strategica che consente di raggiungere comodamente il centro di Venezia in circa 15 minuti di auto e di usufruire di collegamenti rapidi verso le principali attrazioni della terraferma.
+
+                        Le camere, dallo stile mediterraneo e curate in ogni dettaglio, garantiscono il massimo comfort e versatilità, con orari di check-in e check-out flessibili, perfetti anche per chi ha voli in orari scomodi. Dolce Laguna offre numerosi servizi esclusivi, un ambiente accogliente e raffinato, per rendere ogni soggiorno pratico, piacevole e indimenticabile.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/Homepage/Chi_siamo/009.jpg" alt="Dolce Laguna">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
     <!-- Modale Dettaglio Spazio -->
     <div class="modal" id="spaceModal">
@@ -2194,6 +2376,17 @@
             <h2 class="modal-title"></h2>
             <p class="modal-description"></p>
             <div class="modal-features"></div>
+        </div>
+    </div>
+
+    <!-- Popup Feature Modal -->
+    <div class="feature-modal" id="featureModal">
+        <div class="feature-modal-content">
+            <button type="button" class="feature-modal-close" id="featureModalClose" aria-label="Chiudi">&times;</button>
+            <h2 class="feature-modal-title"></h2>
+            <div class="feature-modal-body"></div>
+            <div class="feature-modal-map"></div>
+            <div class="feature-modal-actions"></div>
         </div>
     </div>
 
@@ -2242,6 +2435,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="camere.html">Camere</a></li>
                         <li><a href="servizi.html">Servizi</a></li>
+                        <li><a href="galleria.html">Galleria</a></li>
                         <li><a href="contatti.html">Contatti</a></li>
                         <li><a href="prenota.html">Prenota</a></li>
                         <li><a href="informazioni.html">Informazioni</a></li>
@@ -2324,124 +2518,11 @@
             }
         }
 
-        // Reviews Carousel migliorato
-        const reviewsContainer = document.querySelector('.reviews-container');
-        const reviewSlides = document.querySelectorAll('.review-slide');
-        const dots = document.querySelectorAll('.carousel-dot');
-        const prevBtn = document.querySelector('.carousel-prev');
-        const nextBtn = document.querySelector('.carousel-next');
-        let currentReview = 0;
-        let isAnimating = false;
-        let autoplayInterval;
-        const autoplayDelay = 6000; // 6 secondi per slide
+        // Feature Modal Functionality
+// Questo script è stato sostituito da uno script dedicato alla fine della pagina
+// Per evitare conflitti e garantire il corretto funzionamento dei popup
 
-        function updateReviews() {
-            if (isAnimating) return;
-            isAnimating = true;
-
-            reviewSlides.forEach(slide => slide.classList.remove('active'));
-            const offset = -currentReview * 100;
-            reviewsContainer.style.transform = `translateX(${offset}%)`;
-            
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentReview);
-                dot.setAttribute('aria-selected', index === currentReview);
-            });
-
-            setTimeout(() => {
-                reviewSlides[currentReview].classList.add('active');
-                isAnimating = false;
-            }, 500);
-        }
-
-        function nextReview() {
-            if (isAnimating) return;
-            currentReview = (currentReview + 1) % reviewSlides.length;
-            updateReviews();
-        }
-
-        function prevReview() {
-            if (isAnimating) return;
-            currentReview = (currentReview - 1 + reviewSlides.length) % reviewSlides.length;
-            updateReviews();
-        }
-
-        function startAutoplay() {
-            autoplayInterval = setInterval(() => {
-                if (!isAnimating) {
-                    nextReview();
-                }
-            }, autoplayDelay);
-        }
-
-        function stopAutoplay() {
-            clearInterval(autoplayInterval);
-        }
-
-        // Event Listeners
-        prevBtn.addEventListener('click', () => {
-            prevReview();
-            stopAutoplay();
-            startAutoplay();
-        });
-
-        nextBtn.addEventListener('click', () => {
-            nextReview();
-            stopAutoplay();
-            startAutoplay();
-        });
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                if (currentReview === index || isAnimating) return;
-                currentReview = index;
-                updateReviews();
-                stopAutoplay();
-                startAutoplay();
-            });
-        });
-
-        // Touch Events per Reviews
-        reviewsContainer.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-            stopAutoplay();
-        });
-
-        reviewsContainer.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleReviewsSwipe();
-            startAutoplay();
-        });
-
-        function handleReviewsSwipe() {
-            const swipeThreshold = 50;
-            if (touchEndX < touchStartX - swipeThreshold) {
-                nextReview();
-            } else if (touchEndX > touchStartX + swipeThreshold) {
-                prevReview();
-            }
-        }
-
-        // Keyboard Navigation
-        document.addEventListener('keydown', e => {
-            if (e.key === 'ArrowLeft') {
-                prevReview();
-                stopAutoplay();
-                startAutoplay();
-            } else if (e.key === 'ArrowRight') {
-                nextReview();
-                stopAutoplay();
-                startAutoplay();
-            }
-        });
-
-        // Pausa autoplay al hover
-        reviewsContainer.addEventListener('mouseenter', stopAutoplay);
-        reviewsContainer.addEventListener('mouseleave', startAutoplay);
-
-        // Inizializza
-        startAutoplay();
-        updateReviews();
+        // Reviews Carousel script è stato rimosso per semplificare la pagina
 
         // Animazioni al scroll
         const observerOptions = {
@@ -2457,8 +2538,8 @@
             });
         }, observerOptions);
 
-        // Osserva gli elementi da animare
-        document.querySelectorAll('.about-text, .about-image, .feature-card, .space-card').forEach(el => {
+        // Osserva solo gli elementi che devono animarsi allo scroll
+        document.querySelectorAll('.feature-card, .space-card').forEach(el => {
             observer.observe(el);
         });
 
@@ -2682,6 +2763,7 @@
                 content: 'Dolce Laguna si trova in una posizione ideale, a soli 800 metri dall\'Aeroporto Marco Polo di Venezia. La struttura è a pochi chilometri da Piazzale Roma, il principale punto di accesso a Venezia, raggiungibile in appena 10 minuti di auto.',
                 hasMap: true,
                 address: 'Via Alessandria 43b, Tessera (VE)',
+                mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.3442782456584!2d12.327831376889761!3d45.50332197107633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477eb4c7a6b55555%3A0x8d87f65f4d94d894!2sDolce%20Laguna%20Affittacamere!5e0!3m2!1sit!2sit!4v1713633031123!5m2!1sit!2sit',
                 actions: [{
                     type: 'copy',
                     text: 'Copia indirizzo'
@@ -2693,7 +2775,7 @@
                 actions: [{
                     type: 'link',
                     text: 'Scopri i nostri servizi',
-                    url: '/servizi'
+                    url: '/servizi.html'
                 }]
             },
             rooms: {
@@ -2716,39 +2798,46 @@
             }
         };
 
+        function getFeatureIcon(featureId) {
+            const icons = {
+                location: 'fa-map-marker-alt',
+                service: 'fa-concierge-bell',
+                rooms: 'fa-spa',
+                food: 'fa-utensils'
+            };
+            return icons[featureId] || 'fa-info-circle';
+        }
+
         function openFeatureModal(featureId) {
             const data = featureData[featureId];
             if (!data) return;
 
             featureModalTitle.textContent = data.title;
-            featureModalBody.textContent = data.content;
+            featureModalBody.innerHTML = `
+                <div class="feature-modal-icon">
+                    <i class="fas ${getFeatureIcon(featureId)}"></i>
+                </div>
+                <p>${data.content}</p>
+            `;
             
-            // Gestione mappa
-            if (data.hasMap) {
+            if (data.hasMap && data.mapUrl) {
+                featureModalMap.innerHTML = `<iframe src="${data.mapUrl}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
                 featureModalMap.style.display = 'block';
-                featureModalMap.innerHTML = `
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.3442782456584!2d12.327831376889761!3d45.50332197107633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477eb4c7a6b55555%3A0x8d87f65f4d94d894!2sDolce%20Laguna%20Affittacamere!5e0!3m2!1sit!2sit!4v1713633031123!5m2!1sit!2sit"
-                        width="100%"
-                        height="100%"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>`;
             } else {
                 featureModalMap.style.display = 'none';
             }
 
-            // Gestione azioni
             featureModalActions.innerHTML = '';
-            data.actions.forEach(action => {
-                if (action.type === 'copy') {
+            if (data.actions) {
+                data.actions.forEach(action => {
                     const button = document.createElement('button');
-                    button.className = 'feature-modal-btn copy-btn';
                     button.textContent = action.text;
-                    button.addEventListener('click', () => {
-                        navigator.clipboard.writeText(data.address).then(() => {
+                    button.classList.add('feature-modal-btn');
+                    
+                    if (action.type === 'copy') {
+                        button.classList.add('copy-btn');
+                        button.addEventListener('click', () => {
+                            navigator.clipboard.writeText(data.address);
                             button.textContent = 'Indirizzo copiato!';
                             button.classList.add('copied');
                             setTimeout(() => {
@@ -2756,30 +2845,30 @@
                                 button.classList.remove('copied');
                             }, 2000);
                         });
-                    });
+                    } else if (action.type === 'link') {
+                        button.addEventListener('click', () => {
+                            window.location.href = action.url;
+                        });
+                    }
+                    
                     featureModalActions.appendChild(button);
-                } else if (action.type === 'link') {
-                    const link = document.createElement('a');
-                    link.href = action.url;
-                    link.className = 'feature-modal-btn';
-                    link.textContent = action.text;
-                    featureModalActions.appendChild(link);
-                }
-            });
+                });
+            }
 
             featureModal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
-            // Focus management
-            featureModalClose.focus();
         }
 
         function closeFeatureModal() {
-            featureModal.classList.remove('active');
-            document.body.style.overflow = '';
+            const featureModal = document.querySelector('.feature-modal');
+            if (featureModal) {
+                featureModal.classList.remove('active');
+                document.body.style.overflow = '';
+                console.log('Modal chiuso');
+            }
         }
 
-        // Event Listeners
+        // Event Listeners per Feature Modal
         featureCards.forEach(card => {
             card.addEventListener('click', () => {
                 const featureId = card.dataset.feature;
@@ -2787,7 +2876,10 @@
             });
         });
 
-        featureModalClose.addEventListener('click', closeFeatureModal);
+        featureModalClose.addEventListener('click', function() {
+            closeFeatureModal();
+            console.log('Pulsante di chiusura cliccato');
+        });
 
         featureModal.addEventListener('click', (e) => {
             if (e.target === featureModal) {
@@ -2851,6 +2943,20 @@
 
         // Initialize room carousels when the page loads
         document.addEventListener('DOMContentLoaded', initRoomCarousels);
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Reviews Carousel script è stato rimosso per semplificare la pagina
+
+        // ... rest of the code ...
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
@@ -2868,6 +2974,120 @@
                 w.onload = loader;
             }
         })(window, document);
+    </script>
+    <!-- Questo script è stato sostituito dal nuovo script dedicato -->
+    <!-- Script dedicato per i popup delle feature -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleziona gli elementi necessari
+            const featureModal = document.getElementById('featureModal');
+            const featureModalClose = document.getElementById('featureModalClose');
+            const featureCards = document.querySelectorAll('.feature-card');
+            
+            if (!featureModal || !featureModalClose) {
+                console.error('Elementi del popup non trovati');
+                return;
+            }
+            
+            // Funzione per chiudere il popup
+            function closeFeatureModal() {
+                featureModal.classList.remove('active');
+                document.body.style.overflow = '';
+                console.log('Popup chiuso');
+            }
+            
+            // Funzione per aprire il popup
+            function openFeatureModal(featureId) {
+                const data = featureData[featureId];
+                if (!data) return;
+                
+                const featureModalTitle = featureModal.querySelector('.feature-modal-title');
+                const featureModalBody = featureModal.querySelector('.feature-modal-body');
+                const featureModalMap = featureModal.querySelector('.feature-modal-map');
+                const featureModalActions = featureModal.querySelector('.feature-modal-actions');
+                
+                featureModalTitle.textContent = data.title;
+                featureModalBody.innerHTML = `
+                    <div class="feature-modal-icon">
+                        <i class="fas ${getFeatureIcon(featureId)}"></i>
+                    </div>
+                    <p>${data.content}</p>
+                `;
+                
+                if (data.hasMap && data.mapUrl) {
+                    featureModalMap.innerHTML = `<iframe src="${data.mapUrl}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+                    featureModalMap.style.display = 'block';
+                } else {
+                    featureModalMap.style.display = 'none';
+                }
+                
+                featureModalActions.innerHTML = '';
+                if (data.actions) {
+                    data.actions.forEach(action => {
+                        const button = document.createElement('button');
+                        button.textContent = action.text;
+                        button.classList.add('feature-modal-btn');
+                        
+                        if (action.type === 'copy') {
+                            button.classList.add('copy-btn');
+                            button.addEventListener('click', () => {
+                                navigator.clipboard.writeText(data.address);
+                                button.textContent = 'Indirizzo copiato!';
+                                button.classList.add('copied');
+                                setTimeout(() => {
+                                    button.textContent = action.text;
+                                    button.classList.remove('copied');
+                                }, 2000);
+                            });
+                        } else if (action.type === 'link') {
+                            button.addEventListener('click', () => {
+                                window.location.href = action.url;
+                            });
+                        }
+                        
+                        featureModalActions.appendChild(button);
+                    });
+                }
+                
+                featureModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                console.log('Popup aperto');
+            }
+            
+            // Event Listeners
+            
+            // 1. Pulsante di chiusura
+            featureModalClose.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeFeatureModal();
+                console.log('Pulsante di chiusura cliccato');
+            });
+            
+            // 2. Feature cards
+            featureCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const featureId = this.dataset.feature;
+                    openFeatureModal(featureId);
+                });
+            });
+            
+            // 3. Chiusura cliccando fuori
+            featureModal.addEventListener('click', function(e) {
+                if (e.target === featureModal) {
+                    closeFeatureModal();
+                }
+            });
+            
+            // 4. Chiusura con tasto ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && featureModal.classList.contains('active')) {
+                    closeFeatureModal();
+                }
+            });
+            
+            console.log('Inizializzazione popup completata');
+        });
     </script>
 </body>
 </html>

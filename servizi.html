@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta tag per garantire il reset della posizione di scroll -->
+    <meta http-equiv="Cache-Control" content="no-store">
     <script type="text/javascript">
         var _iub = _iub || [];
         _iub.csConfiguration = {"siteId":4037558,"cookiePolicyId":36967651,"lang":"it","storage":{"useSiteId":true},"domain":"dolcelaguna.com"};
@@ -14,18 +16,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Reset e stili base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Reset e palette base */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
         }
 
         body {
             font-family: 'Playfair Display', serif;
-            line-height: 1.6;
+            line-height: 1.7;
             color: #333;
-            background-color: #f9f7f4;
+            background-color: #f7f2ef;
         }
 
         .container {
@@ -33,47 +35,88 @@
             margin: 0 auto;
             padding: 0 1rem;
         }
+        
+        /* Animazioni globali */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* Coming Soon Section */
-        .coming-soon-section {
-            min-height: 70vh;
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        /* Hero Section - rimosso il margine sopra */
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
             text-align: center;
+            color: white;
             padding: 2rem;
-            margin-top: 80px;
         }
 
-        .coming-soon-content {
-            max-width: 800px;
-            padding: 3rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .coming-soon-title {
+        .hero-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.7rem;
-            color: #942e2f;
-            margin-bottom: 1.5rem;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .coming-soon-description {
+        .title-underline {
+            width: 100px;
+            height: 3px;
+            background: #e89700;
+            margin: 1rem auto;
+        }
+
+        .hero-description {
             font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 2rem;
-            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
-        .coming-soon-icon {
-            font-size: 3rem;
-            color: #e89700;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Header Styles */
+        /* Header e Footer da informazioni.html */
         .header {
             position: fixed;
             top: 0;
@@ -95,7 +138,8 @@
             padding: 1rem;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            position: relative;
         }
 
         .logo {
@@ -130,12 +174,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
+            animation: pulse 2s infinite;
         }
 
-        .book-now-btn:hover {
-            background: #942e2f;
-            transform: translateY(-2px);
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(232, 151, 0, 0.4);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(232, 151, 0, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(232, 151, 0, 0);
+            }
         }
 
         .mobile-menu-btn {
@@ -153,7 +207,7 @@
         .menu-icon {
             width: 24px;
             height: 2px;
-            background: white;
+            background: #942e2f;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -167,7 +221,7 @@
             position: absolute;
             width: 24px;
             height: 2px;
-            background: white;
+            background: #942e2f;
             transition: all 0.3s ease;
         }
 
@@ -185,7 +239,22 @@
             background: #942e2f;
         }
 
-        /* Mobile Menu */
+        .mobile-menu-btn.active .menu-icon {
+            background: transparent;
+        }
+
+        .mobile-menu-btn.active .menu-icon::before {
+            transform: rotate(45deg);
+            top: 0;
+            background: #942e2f;
+        }
+
+        .mobile-menu-btn.active .menu-icon::after {
+            transform: rotate(-45deg);
+            bottom: 0;
+            background: #942e2f;
+        }
+
         .mobile-menu-overlay {
             display: none;
             position: fixed;
@@ -220,15 +289,43 @@
             right: 0;
         }
 
+        .mobile-menu .logo {
+            display: none;
+        }
+
+        .mobile-menu .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #942e2f;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+        }
+
+        .mobile-menu.active .logo-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .mobile-nav-links {
             list-style: none;
             padding: 0;
             margin: 0;
             text-align: center;
+            width: 100%;
         }
 
         .mobile-nav-links li {
             margin: 1.5rem 0;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active .mobile-nav-links li {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .mobile-nav-links a {
@@ -239,10 +336,24 @@
             display: block;
             padding: 1rem 0;
             transition: all 0.3s ease;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .mobile-nav-links a:hover {
-            color: #e89700;
+        .mobile-menu .book-now-btn {
+            margin-top: 3rem;
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s;
+            animation: pulse 2s infinite;
+        }
+
+        .mobile-menu.active .book-now-btn {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .mobile-menu-close {
@@ -255,6 +366,109 @@
             color: #942e2f;
             cursor: pointer;
             padding: 0.5rem;
+        }
+
+        /* Nuovo stile per indice servizi */
+        .services-index {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #942e2f;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-item {
+            background: #f9f7f4;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #e89700;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #942e2f;
+            margin-bottom: 1rem;
+        }
+
+        /* Contatti semplificati */
+        .contact-simple {
+            padding: 4rem 0;
+            background: #f9f7f4;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #942e2f;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-text {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #e89700;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background: #942e2f;
+            transform: translateY(-5px);
         }
 
         /* Footer */
@@ -395,17 +609,320 @@
             margin: 0;
         }
 
-        @media screen and (max-width: 768px) {
-            .coming-soon-title {
-                font-size: 2rem;
-            }
-
-            .coming-soon-description {
-                font-size: 1.1rem;
-            }
-
-            .coming-soon-content {
+        /* Desktop Menu */
+        @media screen and (min-width: 901px) {
+            .mobile-menu {
+                position: absolute;
+                top: calc(100% + 1rem);
+                right: 2rem;
+                width: 300px;
+                height: auto;
+                background: white;
                 padding: 2rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                border-radius: 15px;
+                transform: translateX(30px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .mobile-menu.active {
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .mobile-menu-overlay {
+                display: none;
+            }
+
+            .mobile-nav-links {
+                transform: none;
+            }
+
+            .mobile-nav-links li {
+                margin: 1rem 0;
+                transform: translateX(20px);
+            }
+
+            .mobile-menu.active .mobile-nav-links li {
+                transform: translateX(0);
+            }
+
+            .mobile-nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+            }
+
+            .mobile-menu .book-now-btn {
+                transform: none;
+                opacity: 0;
+                margin-top: 1.5rem;
+                font-size: 1rem;
+            }
+
+            .mobile-menu.active .book-now-btn {
+                opacity: 1;
+            }
+
+            .mobile-menu .logo {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* Indice Sticky */
+        .info-index-section {
+            background: #f7f2ef;
+            padding: 0 0 1rem 0;
+        }
+
+        .info-index-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            color: #942e2f;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-index-sticky {
+            position: sticky;
+            top: 80px;
+            z-index: 900;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 50px;
+            margin: 0 auto 2rem;
+            max-width: 1000px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            transition: all 0.3s ease;
+        }
+
+        .info-index-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #f9f7f4;
+            color: #9e3432;
+            border: none;
+            border-radius: 30px;
+            padding: 0.8rem 1.4rem;
+            font-size: 1.05rem;
+            font-family: 'Playfair Display', serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .info-index-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .info-index-link.active {
+            background: #942e2f;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(148, 46, 47, 0.3);
+        }
+
+        .info-index-link .fa-solid {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .info-index-link:hover .fa-solid {
+            transform: scale(1.1);
+        }
+
+        .info-index-link.ristoranti {
+            color: #9e3432;
+        }
+        .info-index-link.ristoro {
+            color: #e89700;
+        }
+        .info-index-link.internet {
+            color: #1d86b5;
+        }
+        .info-index-link.trasporti {
+            color: #942e2f;
+        }
+        .info-index-link.attrazioni {
+            color: #e89700;
+        }
+        .info-index-link.active.ristoranti {
+            background: #9e3432;
+            color: #fff;
+        }
+        .info-index-link.active.ristoro {
+            background: #e89700;
+            color: #fff;
+        }
+        .info-index-link.active.internet {
+            background: #1d86b5;
+            color: #fff;
+        }
+        .info-index-link.active.trasporti {
+            background: #942e2f;
+            color: #fff;
+        }
+        .info-index-link.active.attrazioni {
+            background: #e89700;
+            color: #fff;
+        }
+        /* Margine tra hero e indice, ora colore sfondo */
+        .white-gap {
+            width: 100%;
+            height: 18px;
+            background: #f7f2ef;
+            display: block;
+        }
+
+        /* Sezioni informative con stile rinnovato */
+        .info-section { 
+            padding: 1.3rem 0;
+            background: #f7f2ef;
+        }
+
+        .info-section .section-title-info {
+            display: flex; 
+            align-items: center; 
+            gap: 0.7rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #942e2f;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-section .section-icon-info { 
+            font-size: 1.5rem; 
+            margin-right: 0.5rem; 
+        }
+
+        .info-section ul, .info-section ol { 
+            margin-left: 1.5rem; 
+            margin-bottom: 1.2rem;
+        }
+
+        .info-section li { 
+            margin-bottom: 0.8rem; 
+        }
+
+        /* Stile card per ogni sezione */
+        .info-container {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 1.8rem;
+            margin-bottom: 1rem;
+            border-top: 5px solid;
+        }
+
+        /* Colori specifici per ogni sezione */
+        .info-section.ristoranti-section .info-container {
+            border-color: #942e2f;
+        }
+
+        .info-section.ristoranti-section .section-icon-info {
+            color: #942e2f;
+        }
+
+        .info-section.ristoro-section .info-container {
+            border-color: #e89700;
+        }
+
+        .info-section.ristoro-section .section-icon-info {
+            color: #e89700;
+        }
+
+        .info-section.internet-section .info-container {
+            border-color: #9cd0e5;
+        }
+
+        .info-section.internet-section .section-icon-info {
+            color: #9cd0e5;
+        }
+
+        .info-section.trasporti-section .info-container {
+            border-color: #942e2f;
+        }
+
+        .info-section.trasporti-section .section-icon-info {
+            color: #942e2f;
+        }
+
+        .info-section.attrazioni-section .info-container {
+            border-color: #e89700;
+        }
+
+        .info-section.attrazioni-section .section-icon-info {
+            color: #e89700;
+        }
+
+        .info-section .info-box {
+            background: #f9f7f4;
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .info-section .info-box:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+        }
+
+        .info-section .callout {
+            background: #fff3cd;
+            color: #9e3432;
+            border-left: 5px solid #e89700;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin: 1.2rem 0;
+            font-weight: 500;
+        }
+
+        .info-section .callout.important {
+            background: #ffeaea;
+            color: #942e2f;
+            border-left: 5px solid #9e3432;
+        }
+
+        .info-section .callout.note {
+            background: #e6f7ff;
+            color: #1a4d6a;
+            border-left: 5px solid #9cd0e5;
+        }
+
+        .info-section .info-box strong { 
+            color: #942e2f; 
+        }
+
+        @media (max-width: 900px) {
+            .info-index-sticky { 
+                flex-wrap: nowrap; 
+                overflow-x: auto; 
+                justify-content: flex-start;
+                padding: 0.8rem 1rem;
+                border-radius: 30px;
+                margin: 1rem auto 1.5rem;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .info-index-sticky::-webkit-scrollbar {
+                display: none;
+            }
+            .info-index-link {
+                padding: 0.54rem 0.9rem;
+                font-size: 0.95rem;
+                white-space: nowrap;
             }
         }
     </style>
@@ -414,11 +931,11 @@
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <a href="index.html" class="logo">
-                <img src="images/logo-dolcelaguna.png" alt="Dolce Laguna" class="logo-img" />
+            <a href="/" class="logo">
+                <img src="/images/logo-dolcelaguna.png" alt="Dolce Laguna" class="logo-img" />
             </a>
             <div class="header-actions">
-                <a href="prenota.html" class="book-now-btn">Prenota Ora</a>
+                <a href="/prenota.html" class="book-now-btn">Prenota Ora</a>
                 <button class="mobile-menu-btn" aria-label="Apri menu" aria-expanded="false">
                     <span class="menu-icon"></span>
                 </button>
@@ -427,29 +944,141 @@
         <div class="mobile-menu-overlay" tabindex="-1"></div>
         <nav class="mobile-menu">
             <div class="logo">
-                <img src="images/logo-dolcelaguna.png" alt="Dolce Laguna" class="logo-img" />
+                <img src="/images/logo-dolcelaguna.png" alt="Dolce Laguna" class="logo-img" />
             </div>
             <ul class="mobile-nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="camere.html">Camere</a></li>
-                <li><a href="servizi.html">Servizi</a></li>
-                <li><a href="informazioni.html">Informazioni</a></li>
-                <li><a href="contatti.html">Contatti</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/cameresoon.html">Camere</a></li>
+                <li><a href="/servizi.html">Servizi</a></li>
+                <li><a href="/galleria.html">Galleria</a></li>
+                <li><a href="/contatti.html">Contatti</a></li>
+                <li><a href="/informazioni.html">Informazioni</a></li>
             </ul>
-            <a href="prenota.html" class="book-now-btn">Prenota Ora</a>
-            <button class="mobile-menu-close" aria-label="Chiudi menu">&times;</button>
+            <a href="/prenota.html" class="book-now-btn">Prenota Ora</a>
         </nav>
     </header>
 
-    <!-- Coming Soon Section -->
-    <section class="coming-soon-section">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <img src="images/009.jpg" alt="Dolce Laguna" class="hero-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">I Nostri Servizi</h1>
+            <span class="title-underline"></span>
+            <p class="hero-description">Scopri i Servizi che Dolce Laguna offre ai suoi Ospiti</p>
+        </div>
+    </section>
+
+    <div class="white-gap"></div>
+
+    <!-- Indice Sticky -->
+    <section class="info-index-section">
         <div class="container">
-            <div class="coming-soon-content">
-                <i class="fas fa-concierge-bell coming-soon-icon"></i>
-                <h1 class="coming-soon-title">Presto Disponibile</h1>
-                <p class="coming-soon-description">
-                    Stiamo lavorando per mostrarti tutti i nostri servizi in modo dettagliato. Tra pochi giorni potrai scoprire tutti i comfort e le comodità che offriamo ai nostri ospiti, dalla colazione al servizio concierge, per rendere il tuo soggiorno ancora più speciale.
-                </p>
+            <h2 class="info-index-title">Indice</h2>
+            <nav class="info-index-sticky" id="info-index">
+                <a class="info-index-link ristoranti" href="#ristoranti"><i class="fa-solid fa-utensils"></i> Ristoranti</a>
+                <a class="info-index-link ristoro" href="#ristoro"><i class="fa-solid fa-mug-hot"></i> Area Ristoro</a>
+                <a class="info-index-link internet" href="#internet"><i class="fa-solid fa-wifi"></i> Internet</a>
+                <a class="info-index-link trasporti" href="#trasporti"><i class="fa-solid fa-shuttle-van"></i> Trasporti</a>
+                <a class="info-index-link attrazioni" href="#attrazioni"><i class="fa-solid fa-landmark"></i> Attrazioni</a>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Sezioni Informative -->
+    <section class="info-section ristoranti-section" id="ristoranti">
+        <div class="container">
+            <div class="info-container">
+                <div class="section-title-info"><i class="fa-solid fa-utensils section-icon-info"></i> Ristoranti</div>
+                <div class="info-box">
+                    <p>Scopri la cucina italiana nei ristoranti della zona. Dolce Laguna consiglia in particolare:</p>
+                    <ul>
+                        <li><strong>Pizzeria Al Quadrante</strong> - Via Orlanda, 258, 30173 Venezia VE (la raccomandazione di Dolce Laguna)</li>
+                    </ul>
+                    <div class="callout note">
+                        Il nostro staff può fornirti altri consigli o aiutarti con la prenotazione di un ristorante in particolare.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section ristoro-section" id="ristoro">
+        <div class="container">
+            <div class="info-container">
+                <div class="section-title-info"><i class="fa-solid fa-mug-hot section-icon-info"></i> Area Ristoro</div>
+                <div class="info-box">
+                    <p>Nell'area ristoro puoi fare colazione e rilassarti in qualsiasi momento della giornata:</p>
+                    <ul>
+                        <li>Snack dolci e salati confezionati</li>
+                        <li>Caffè, tè e tisane</li>
+                        <li>Bevande fredde</li>
+                        <li>Area relax</li>
+                    </ul>
+                    <div class="callout">
+                        L'area ristoro è aperta 24/7 per la massima comodità dei nostri ospiti.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section internet-section" id="internet">
+        <div class="container">
+            <div class="info-container">
+                <div class="section-title-info"><i class="fa-solid fa-wifi section-icon-info"></i> Internet</div>
+                <div class="info-box">
+                    <p>Resta sempre connesso durante il tuo soggiorno:</p>
+                    <ul>
+                        <li>Wi-Fi gratuito ad alta velocità</li>
+                        <li>Copertura in tutte le aree della struttura</li>
+                        <li>Connessione stabile e sicura</li>
+                    </ul>
+                    <div class="callout note">
+                        Le credenziali di accesso sono disponibili alla reception.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section trasporti-section" id="trasporti">
+        <div class="container">
+            <div class="info-container">
+                <div class="section-title-info"><i class="fa-solid fa-shuttle-van section-icon-info"></i> Trasporti</div>
+                <div class="info-box">
+                    <p>Lo staff di Dolce Laguna è disponibile per aiutarti a prenotare un trasporto da e per i principali luoghi d'Interesse (come taxi, noleggio con conducente o altro servizio su richiesta).</p>
+                    <ul>
+                        <li>Assistenza nella prenotazione di taxi o NCC</li>
+                        <li>Corsa dalla struttura all'aeroporto</li>
+                        <li>Corsa dalla struttura a Venezia</li>
+                        <li>Corsa dalla struttura a qualsiasi punto in terraferma (es. stazione ferroviaria o altro luogo)</li>
+                    </ul>
+                
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section attrazioni-section" id="attrazioni">
+        <div class="container">
+            <div class="info-container">
+                <div class="section-title-info"><i class="fa-solid fa-landmark section-icon-info"></i> Attrazioni</div>
+                <div class="info-box">
+                    <p>Lo staff di Dolce Laguna può indicarti e fornirti informazioni per le principali attrazioni della zona.</p>
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Semplificati -->
+    <section class="contact-simple">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="contact-title">Hai domande?</h2>
+                <p class="contact-text">Il nostro staff è a tua disposizione per qualsiasi informazione o richiesta sui nostri servizi. Non esitare a contattarci per rendere il tuo soggiorno a Dolce Laguna ancora più speciale.</p>
+                <a href="contatti.html" class="contact-button">Contattaci</a>
             </div>
         </div>
     </section>
@@ -499,8 +1128,10 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="camere.html">Camere</a></li>
                         <li><a href="servizi.html">Servizi</a></li>
-                        <li><a href="informazioni.html">Informazioni</a></li>
+                        <li><a href="galleria.html">Galleria</a></li>
                         <li><a href="contatti.html">Contatti</a></li>
+                        <li><a href="prenota.html">Prenota</a></li>
+                        <li><a href="informazioni.html">Informazioni</a></li>
                     </ul>
                 </div>
                 
@@ -527,13 +1158,17 @@
     </footer>
 
     <script>
+        // Assicurarsi che la pagina torni all'inizio quando viene ricaricata
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        };
+        
         // Mobile Menu Functionality
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
         const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-        const mobileMenuClose = document.querySelector('.mobile-menu-close');
         const body = document.body;
-
+        
         function toggleMenu() {
             const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
             mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
@@ -545,14 +1180,13 @@
                 body.style.overflow = isExpanded ? '' : 'hidden';
             }
         }
-
+        
         mobileMenuBtn.addEventListener('click', toggleMenu);
-        mobileMenuClose.addEventListener('click', toggleMenu);
-
+        
         if (window.innerWidth < 901) {
             mobileMenuOverlay.addEventListener('click', toggleMenu);
         }
-
+        
         // Header Scroll Effect
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
@@ -561,6 +1195,65 @@
             } else {
                 header.classList.remove('scrolled');
             }
+        });
+
+        // Miglioramento dell'indice sticky: scroll animato e attivazione link
+        document.addEventListener('DOMContentLoaded', function() {
+            const indexLinks = document.querySelectorAll('.info-index-link[href^="#"]');
+            const sections = document.querySelectorAll('.info-section');
+            const header = document.querySelector('.header');
+            const indexSticky = document.querySelector('.info-index-sticky');
+            
+            function getScrollOffset() {
+                const headerHeight = header.offsetHeight;
+                const indexHeight = indexSticky.offsetHeight;
+                return headerHeight + indexHeight + 20;
+            }
+            
+            indexLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        const offset = getScrollOffset();
+                        const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            function updateActiveLink() {
+                const scrollPosition = window.scrollY;
+                const offset = getScrollOffset();
+                
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - offset;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                indexLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateActiveLink);
+            window.addEventListener('resize', updateActiveLink);
+            
+            updateActiveLink();
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

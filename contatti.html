@@ -57,7 +57,8 @@
             padding: 1rem;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            position: relative;
         }
 
         .logo {
@@ -70,11 +71,6 @@
         .logo-img {
             height: 50px;
             width: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover .logo-img {
-            transform: scale(1.05);
         }
 
         .header-actions {
@@ -97,13 +93,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
+            animation: pulse 2s infinite;
         }
 
-        .book-now-btn:hover {
-            background: #942e2f;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(232, 151, 0, 0.4);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(232, 151, 0, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(232, 151, 0, 0);
+            }
         }
 
         .mobile-menu-btn {
@@ -121,7 +126,7 @@
         .menu-icon {
             width: 24px;
             height: 2px;
-            background: white;
+            background: #942e2f;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -135,7 +140,7 @@
             position: absolute;
             width: 24px;
             height: 2px;
-            background: white;
+            background: #942e2f;
             transition: all 0.3s ease;
         }
 
@@ -150,6 +155,22 @@
         .header.scrolled .menu-icon,
         .header.scrolled .menu-icon::before,
         .header.scrolled .menu-icon::after {
+            background: #942e2f;
+        }
+
+        .mobile-menu-btn.active .menu-icon {
+            background: transparent;
+        }
+
+        .mobile-menu-btn.active .menu-icon::before {
+            transform: rotate(45deg);
+            top: 0;
+            background: #942e2f;
+        }
+
+        .mobile-menu-btn.active .menu-icon::after {
+            transform: rotate(-45deg);
+            bottom: 0;
             background: #942e2f;
         }
 
@@ -188,13 +209,20 @@
         }
 
         .mobile-menu .logo {
+            display: none;
+        }
+
+        .mobile-menu .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #942e2f;
             margin-bottom: 3rem;
             opacity: 0;
             transform: translateY(-20px);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
         }
 
-        .mobile-menu.active .logo {
+        .mobile-menu.active .logo-text {
             opacity: 1;
             transform: translateY(0);
         }
@@ -204,12 +232,13 @@
             padding: 0;
             margin: 0;
             text-align: center;
+            width: 100%;
         }
 
         .mobile-nav-links li {
             margin: 1.5rem 0;
             opacity: 0;
-            transform: translateX(30px);
+            transform: translateX(50px);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -217,12 +246,6 @@
             opacity: 1;
             transform: translateX(0);
         }
-
-        .mobile-nav-links li:nth-child(1) { transition-delay: 0.2s; }
-        .mobile-nav-links li:nth-child(2) { transition-delay: 0.3s; }
-        .mobile-nav-links li:nth-child(3) { transition-delay: 0.4s; }
-        .mobile-nav-links li:nth-child(4) { transition-delay: 0.5s; }
-        .mobile-nav-links li:nth-child(5) { transition-delay: 0.6s; }
 
         .mobile-nav-links a {
             color: #942e2f;
@@ -238,53 +261,80 @@
             justify-content: center;
         }
 
-        .mobile-nav-links a:hover {
-            color: #e89700;
-            transform: scale(1.05);
-        }
-
         .mobile-menu .book-now-btn {
             margin-top: 3rem;
             font-size: 1.2rem;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateX(50px);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s;
+            animation: pulse 2s infinite;
         }
 
         .mobile-menu.active .book-now-btn {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0);
         }
 
-        .mobile-menu-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: #942e2f;
-            cursor: pointer;
-            padding: 0.5rem;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: rotate(0deg);
-            transition: all 0.3s ease;
-            z-index: 1002;
-            opacity: 0;
-        }
+        /* Desktop Menu */
+        @media screen and (min-width: 901px) {
+            .mobile-menu {
+                position: absolute;
+                top: calc(100% + 1rem);
+                right: 2rem;
+                width: 300px;
+                height: auto;
+                background: white;
+                padding: 2rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                border-radius: 15px;
+                transform: translateX(30px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
 
-        .mobile-menu.active .mobile-menu-close {
-            opacity: 1;
-            transition-delay: 0.3s;
-        }
+            .mobile-menu.active {
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
+            }
 
-        .mobile-menu-close:hover {
-            transform: rotate(90deg);
-            color: #e89700;
+            .mobile-menu-overlay {
+                display: none;
+            }
+
+            .mobile-nav-links {
+                transform: none;
+            }
+
+            .mobile-nav-links li {
+                margin: 1rem 0;
+                transform: translateX(20px);
+            }
+
+            .mobile-menu.active .mobile-nav-links li {
+                transform: translateX(0);
+            }
+
+            .mobile-nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+            }
+
+            .mobile-menu .book-now-btn {
+                transform: none;
+                opacity: 0;
+                margin-top: 1.5rem;
+                font-size: 1rem;
+            }
+
+            .mobile-menu.active .book-now-btn {
+                opacity: 1;
+            }
+
+            .mobile-menu .logo {
+                margin-bottom: 2rem;
+            }
         }
 
         /* Hero Section */
@@ -292,7 +342,7 @@
             position: relative;
             height: 60vh;
             overflow: hidden;
-            margin-top: 80px;
+            margin-top: 0;
         }
 
         .hero-background {
@@ -340,7 +390,7 @@
 
         .hero-title {
             font-family: 'Cinzel', serif;
-            font-size: 4rem;
+            font-size: 4.8rem;
             margin-bottom: 1.5rem;
             position: relative;
             color: #ffffff;
@@ -365,7 +415,7 @@
         /* Contact Section */
         .contact-section {
             padding: 6rem 0;
-            background: white;
+            background: #f7f2ef;
         }
 
         .section-title {
@@ -415,8 +465,25 @@
             min-height: 180px;
             position: relative;
             transition: all 0.3s ease;
-            border: 1.5px solid rgba(232,151,0,0.08);
+            border-top: 5px solid;
         }
+        
+        .contact-card.telefono {
+            border-color: #942e2f;
+        }
+        
+        .contact-card.email {
+            border-color: #e89700;
+        }
+        
+        .contact-card.indirizzo {
+            border-color: #9cd0e5;
+        }
+        
+        .contact-card.orari {
+            border-color: #942e2f;
+        }
+        
         .contact-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 32px rgba(158,52,50,0.12);
@@ -430,9 +497,25 @@
             align-items: center;
             gap: 0.5rem;
         }
+        
+        .contact-card.telefono .card-label i {
+            color: #942e2f;
+        }
+        
+        .contact-card.email .card-label i {
+            color: #e89700;
+        }
+        
+        .contact-card.indirizzo .card-label i {
+            color: #9cd0e5;
+        }
+        
+        .contact-card.orari .card-label i {
+            color: #942e2f;
+        }
+        
         .contact-card .card-label i {
             font-size: 1.8rem;
-            color: #942e2f;
         }
         .contact-card .card-main {
             font-family: 'Playfair Display', serif;
@@ -473,6 +556,22 @@
             min-height: 44px;
             letter-spacing: 0.5px;
         }
+        
+        .contact-card.telefono .card-action a {
+            color: #942e2f;
+            border-color: #942e2f;
+        }
+        
+        .contact-card.email .card-action a {
+            color: #e89700;
+            border-color: #e89700;
+        }
+        
+        .contact-card.indirizzo .card-action button {
+            color: #9cd0e5;
+            border-color: #9cd0e5;
+        }
+        
         .contact-card .card-action a:hover,
         .contact-card .card-action button:hover {
             background: #942e2f;
@@ -480,6 +579,17 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(148,46,47,0.15);
         }
+        
+        .contact-card.email .card-action a:hover {
+            background: #e89700;
+            box-shadow: 0 4px 12px rgba(232,151,0,0.15);
+        }
+        
+        .contact-card.indirizzo .card-action button:hover {
+            background: #9cd0e5;
+            box-shadow: 0 4px 12px rgba(156,208,229,0.15);
+        }
+        
         .contact-card .card-action i {
             font-size: 1rem;
             opacity: 0.8;
@@ -490,11 +600,19 @@
             color: #942e2f;
             line-height: 1.6;
         }
-        .contact-card .map-container {
-            margin-top: 1.5rem;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(148,46,47,0.1);
+        
+        .contact-card .note {
+            margin-top: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
+        .contact-card.indirizzo .note {
+            background: #e6f7ff;
+            color: #1a4d6a;
+            border-left: 5px solid #9cd0e5;
         }
 
         /* Referenti Section */
@@ -852,8 +970,7 @@
                 padding: 0.5rem 1rem;
             }
 
-            .nav-links,
-            .book-now-btn {
+            .nav-links {
                 display: none;
             }
 
@@ -954,13 +1071,13 @@
             </div>
             <ul class="mobile-nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="camere.html">Camere</a></li>
+                <li><a href="cameresoon.html">Camere</a></li>
                 <li><a href="servizi.html">Servizi</a></li>
-                <li><a href="informazioni.html">Informazioni</a></li>
+                <li><a href="galleria.html">Galleria</a></li>
                 <li><a href="contatti.html">Contatti</a></li>
+                <li><a href="informazioni.html">Informazioni</a></li>
             </ul>
             <a href="prenota.html" class="book-now-btn">Prenota Ora</a>
-            <button class="mobile-menu-close" aria-label="Chiudi menu">&times;</button>
         </nav>
     </header>
 
@@ -975,8 +1092,8 @@
                 <span class="title-underline"></span>
             </h1>
             <p class="hero-description">
-                Siamo qui per aiutarti a pianificare il tuo soggiorno perfetto a Venezia.
-                Non esitare a contattarci per qualsiasi informazione o richiesta.
+            
+                Non esitare a contattarci per qualsiasi informazione o richiesta
             </p>
         </div>
     </section>
@@ -988,47 +1105,38 @@
                 <h2>I Nostri Contatti</h2>
             </div>
             <div class="contact-info">
-                <div class="contact-card">
+                <div class="contact-card telefono">
                     <div class="card-label"><i class="fas fa-phone"></i> Telefono</div>
                     <div class="card-main"><a href="tel:+393341817894">+39 334 181 7894</a></div>
                     <div class="card-action">
                         <a href="tel:+393341817894"><i class="fas fa-phone"></i> Chiamaci</a>
                     </div>
                 </div>
-                <div class="contact-card">
+                <div class="contact-card email">
                     <div class="card-label"><i class="fas fa-envelope"></i> Email</div>
                     <div class="card-main"><a href="mailto:info@dolcelaguna.com">info@dolcelaguna.com</a></div>
                     <div class="card-action">
                         <a href="mailto:info@dolcelaguna.com"><i class="fas fa-envelope"></i> Scrivici</a>
                     </div>
                 </div>
-                <div class="contact-card">
+                <div class="contact-card indirizzo">
                     <div class="card-label"><i class="fas fa-map-marker-alt"></i> Indirizzo</div>
-                    <div class="card-main">via alessandria 43a, tessera (ve)</div>
+                    <div class="card-main">via Alessandria 43a, Tessera (ve)</div>
                     <div class="card-action">
                         <button class="copy-address-btn" data-address="Via Alessandria 43a, Tessera (VE)">
                             <i class="fas fa-copy"></i> Copia indirizzo
                         </button>
                     </div>
-                    <div class="map-container">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.3442782456584!2d12.327831376889761!3d45.50332197107633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477eb4c7a6b55555%3A0x8d87f65f4d94d894!2sDolce%20Laguna%20Affittacamere!5e0!3m2!1sit!2sit!4v1713633031123!5m2!1sit!2sit"
-                            width="100%"
-                            height="250"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Mappa di Dolce Laguna">
-                        </iframe>
+                    <div class="note">
+                        Questo indirizzo è valido anche per l'accesso di chi alloggia presso Dolce Laguna 1. La reception si trova presso Via Alessandria 43a.
                     </div>
                 </div>
-                <div class="contact-card">
+                <div class="contact-card orari">
                     <div class="card-label"><i class="fas fa-clock"></i> Orari</div>
                     <div class="card-main">check-in: 15:00 - 10:00<br>check-out: entro le 10:00</div>
                     <div class="card-action">
                         <div class="info-text">
-                            <div>Reception h24, deposito bagagli gratuito. La struttura non si prende responsabilità per gli oggetti lasciati in questa area.</div>
+                            <div>Reception h24, deposito bagagli gratuito. Dolce Laguna non si prende responsabilità per gli oggetti lasciati in quest'area o incustoditi in tutto il resto della struttura.</div>
                             <div>Check-in notturno consentito</div>
                         </div>
                     </div>
@@ -1144,8 +1252,10 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="camere.html">Camere</a></li>
                         <li><a href="servizi.html">Servizi</a></li>
-                        <li><a href="informazioni.html">Informazioni</a></li>
+                        <li><a href="galleria.html">Galleria</a></li>
                         <li><a href="contatti.html">Contatti</a></li>
+                        <li><a href="prenota.html">Prenota</a></li>
+                        <li><a href="informazioni.html">Informazioni</a></li>
                     </ul>
                 </div>
                 
@@ -1159,8 +1269,7 @@
                             style="border:0;"
                             allowfullscreen=""
                             loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Mappa di Dolce Laguna">
+                            referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                 </div>
@@ -1211,7 +1320,6 @@
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
         const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-        const mobileMenuClose = document.querySelector('.mobile-menu-close');
         const body = document.body;
 
         function toggleMenu() {
@@ -1227,47 +1335,9 @@
         }
 
         mobileMenuBtn.addEventListener('click', toggleMenu);
-        mobileMenuClose.addEventListener('click', toggleMenu);
-
         if (window.innerWidth < 901) {
             mobileMenuOverlay.addEventListener('click', toggleMenu);
         }
-
-        document.addEventListener('click', (e) => {
-            if (window.innerWidth >= 901 && 
-                !mobileMenu.contains(e.target) && 
-                !mobileMenuBtn.contains(e.target) && 
-                mobileMenu.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-
-        // Focus management per accessibilità
-        mobileMenu.addEventListener('keydown', e => {
-            if (e.key === 'Tab') {
-                const focusableElements = mobileMenu.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-                const firstElement = focusableElements[0];
-                const lastElement = focusableElements[focusableElements.length - 1];
-
-                if (e.shiftKey) {
-                    if (document.activeElement === firstElement) {
-                        lastElement.focus();
-                        e.preventDefault();
-                    }
-                } else {
-                    if (document.activeElement === lastElement) {
-                        firstElement.focus();
-                        e.preventDefault();
-                    }
-                }
-            }
-        });
 
         // Header Scroll Effect
         window.addEventListener('scroll', () => {

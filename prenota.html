@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta tag per garantire il reset della posizione di scroll -->
+    <meta http-equiv="Cache-Control" content="no-store">
     <script type="text/javascript">
         var _iub = _iub || [];
         _iub.csConfiguration = {"siteId":4037558,"cookiePolicyId":36967651,"lang":"it","storage":{"useSiteId":true},"domain":"dolcelaguna.com"};
@@ -26,13 +28,32 @@
             font-family: 'Playfair Display', serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f9f7f4;
+            background-color: #f7f2ef;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
+        }
+
+        /* Animazioni globali */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.8s ease-out forwards;
         }
 
         /* Header Styles */
@@ -57,7 +78,8 @@
             padding: 1rem;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            position: relative;
         }
 
         .logo {
@@ -70,11 +92,6 @@
         .logo-img {
             height: 50px;
             width: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover .logo-img {
-            transform: scale(1.05);
         }
 
         .header-actions {
@@ -97,13 +114,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
+            animation: pulse 2s infinite;
         }
 
-        .book-now-btn:hover {
-            background: #942e2f;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(232, 151, 0, 0.4);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(232, 151, 0, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(232, 151, 0, 0);
+            }
         }
 
         .mobile-menu-btn {
@@ -121,7 +147,7 @@
         .menu-icon {
             width: 24px;
             height: 2px;
-            background: white;
+            background: #942e2f;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -135,7 +161,7 @@
             position: absolute;
             width: 24px;
             height: 2px;
-            background: white;
+            background: #942e2f;
             transition: all 0.3s ease;
         }
 
@@ -150,6 +176,22 @@
         .header.scrolled .menu-icon,
         .header.scrolled .menu-icon::before,
         .header.scrolled .menu-icon::after {
+            background: #942e2f;
+        }
+
+        .mobile-menu-btn.active .menu-icon {
+            background: transparent;
+        }
+
+        .mobile-menu-btn.active .menu-icon::before {
+            transform: rotate(45deg);
+            top: 0;
+            background: #942e2f;
+        }
+
+        .mobile-menu-btn.active .menu-icon::after {
+            transform: rotate(-45deg);
+            bottom: 0;
             background: #942e2f;
         }
 
@@ -188,13 +230,20 @@
         }
 
         .mobile-menu .logo {
+            display: none;
+        }
+
+        .mobile-menu .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #942e2f;
             margin-bottom: 3rem;
             opacity: 0;
             transform: translateY(-20px);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
         }
 
-        .mobile-menu.active .logo {
+        .mobile-menu.active .logo-text {
             opacity: 1;
             transform: translateY(0);
         }
@@ -204,12 +253,13 @@
             padding: 0;
             margin: 0;
             text-align: center;
+            width: 100%;
         }
 
         .mobile-nav-links li {
             margin: 1.5rem 0;
             opacity: 0;
-            transform: translateX(30px);
+            transform: translateX(50px);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -217,12 +267,6 @@
             opacity: 1;
             transform: translateX(0);
         }
-
-        .mobile-nav-links li:nth-child(1) { transition-delay: 0.2s; }
-        .mobile-nav-links li:nth-child(2) { transition-delay: 0.3s; }
-        .mobile-nav-links li:nth-child(3) { transition-delay: 0.4s; }
-        .mobile-nav-links li:nth-child(4) { transition-delay: 0.5s; }
-        .mobile-nav-links li:nth-child(5) { transition-delay: 0.6s; }
 
         .mobile-nav-links a {
             color: #942e2f;
@@ -238,53 +282,79 @@
             justify-content: center;
         }
 
-        .mobile-nav-links a:hover {
-            color: #e89700;
-            transform: scale(1.05);
-        }
-
         .mobile-menu .book-now-btn {
             margin-top: 3rem;
             font-size: 1.2rem;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateX(50px);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s;
         }
 
         .mobile-menu.active .book-now-btn {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0);
         }
 
-        .mobile-menu-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: #942e2f;
-            cursor: pointer;
-            padding: 0.5rem;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: rotate(0deg);
-            transition: all 0.3s ease;
-            z-index: 1002;
-            opacity: 0;
-        }
+        /* Desktop Menu */
+        @media screen and (min-width: 901px) {
+            .mobile-menu {
+                position: absolute;
+                top: calc(100% + 1rem);
+                right: 2rem;
+                width: 300px;
+                height: auto;
+                background: white;
+                padding: 2rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                border-radius: 15px;
+                transform: translateX(30px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
 
-        .mobile-menu.active .mobile-menu-close {
-            opacity: 1;
-            transition-delay: 0.3s;
-        }
+            .mobile-menu.active {
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
+            }
 
-        .mobile-menu-close:hover {
-            transform: rotate(90deg);
-            color: #e89700;
+            .mobile-menu-overlay {
+                display: none;
+            }
+
+            .mobile-nav-links {
+                transform: none;
+            }
+
+            .mobile-nav-links li {
+                margin: 1rem 0;
+                transform: translateX(20px);
+            }
+
+            .mobile-menu.active .mobile-nav-links li {
+                transform: translateX(0);
+            }
+
+            .mobile-nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+            }
+
+            .mobile-menu .book-now-btn {
+                transform: none;
+                opacity: 0;
+                margin-top: 1.5rem;
+                font-size: 1rem;
+            }
+
+            .mobile-menu.active .book-now-btn {
+                opacity: 1;
+            }
+
+            .mobile-menu .logo {
+                margin-bottom: 2rem;
+            }
         }
 
         /* Hero Section */
@@ -292,7 +362,7 @@
             position: relative;
             height: 70vh;
             overflow: hidden;
-            margin-top: 80px;
+            margin-top: 0; /* Rimosso il margine superiore */
         }
 
         .hero-video {
@@ -349,8 +419,8 @@
 
         /* Structures Section */
         .structures-section {
-            padding: 6rem 0;
-            background: white;
+            padding: 1.5rem 0 2rem;
+            background: #f7f2ef;
         }
 
         .section-title {
@@ -474,9 +544,9 @@
             border-radius: 10px;
         }
 
-        /* Booking Platforms Section */
+        /* Platforms Section */
         .platforms-section {
-            padding: 6rem 0;
+            padding: 3rem 0 1rem;
             background: #f9f7f4;
         }
 
@@ -536,8 +606,36 @@
 
         /* Benefits Section */
         .benefits-section {
-            padding: 6rem 0;
-            background: white;
+            padding: 1rem 0 4rem;
+            background: #f7f2ef;
+        }
+
+        .benefits-section .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            border-top: 1px solid rgba(148, 46, 47, 0.2);
+            padding-top: 3rem;
+        }
+
+        .benefits-section .section-title h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #942e2f;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .benefits-section .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #e89700;
         }
 
         .benefits-grid {
@@ -547,29 +645,53 @@
         }
 
         .benefit-card {
-            background: #f9f7f4;
+            background: #fff;
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid;
+        }
+
+        .benefit-card:nth-child(1) {
+            border-color: #942e2f;
+        }
+
+        .benefit-card:nth-child(2) {
+            border-color: #e89700;
         }
 
         .benefit-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 32px rgba(158,52,50,0.12);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .benefit-icon {
             font-size: 2.5rem;
-            color: #942e2f;
             margin-bottom: 1.5rem;
+        }
+
+        .benefit-card:nth-child(1) .benefit-icon {
+            color: #942e2f;
+        }
+
+        .benefit-card:nth-child(2) .benefit-icon {
+            color: #e89700;
         }
 
         .benefit-title {
             font-family: 'Cinzel', serif;
             font-size: 1.5rem;
-            color: #942e2f;
             margin-bottom: 1rem;
+        }
+
+        .benefit-card:nth-child(1) .benefit-title {
+            color: #942e2f;
+        }
+
+        .benefit-card:nth-child(2) .benefit-title {
+            color: #e89700;
         }
 
         .benefit-description {
@@ -783,6 +905,325 @@
                 font-size: 1rem;
             }
         }
+
+        /* Disclaimer e sezione di prenotazione con elementi espandibili */
+        .disclaimer-section {
+            padding: 1.5rem 0 0.5rem;
+            background: #f7f2ef;
+        }
+
+        .info-actions-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 1rem 1.5rem;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid #942e2f;
+        }
+
+        .info-actions-text {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .expandable-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .booking-expandable {
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .booking-expandable:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .booking-btn {
+            width: 100%;
+            border: none;
+            padding: 1.6rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+
+        .booking-btn:hover::before {
+            left: 100%;
+        }
+
+        .booking-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .booking-btn span {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .booking-btn:hover span {
+            transform: scale(1.05);
+        }
+
+        /* Nuovi colori più importanti */
+        .booking-btn#dl1-btn {
+            background: #7D1921;
+            box-shadow: 0 6px 15px rgba(125, 25, 33, 0.3);
+            animation: pulse-booking1 2s infinite;
+        }
+
+        .booking-btn#dl2-btn {
+            background: #1A5E8C;
+            box-shadow: 0 6px 15px rgba(26, 94, 140, 0.3);
+            animation: pulse-booking2 2s infinite;
+        }
+
+        .booking-btn#dl1-btn:hover {
+            background: #8F1D27;
+            box-shadow: 0 8px 20px rgba(125, 25, 33, 0.4);
+        }
+
+        .booking-btn#dl2-btn:hover {
+            background: #1D6DA3;
+            box-shadow: 0 8px 20px rgba(26, 94, 140, 0.4);
+        }
+
+        /* Animazione sobria di pulsazione per i bottoni */
+        @keyframes pulse-booking1 {
+            0% {
+                box-shadow: 0 6px 15px rgba(125, 25, 33, 0.3);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 8px 20px rgba(125, 25, 33, 0.5);
+                transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 0 6px 15px rgba(125, 25, 33, 0.3);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse-booking2 {
+            0% {
+                box-shadow: 0 6px 15px rgba(26, 94, 140, 0.3);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 8px 20px rgba(26, 94, 140, 0.5);
+                transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 0 6px 15px rgba(26, 94, 140, 0.3);
+                transform: scale(1);
+            }
+        }
+
+        /* Animazione per i pulsanti Prenota Subito nei sottomenu */
+        .structure-direct-btn {
+            display: inline-block;
+            background: #e89700;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            position: relative;
+            overflow: hidden;
+            animation: pulse-direct 2s infinite;
+        }
+
+        @keyframes pulse-direct {
+            0% {
+                box-shadow: 0 2px 8px rgba(232, 151, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 4px 15px rgba(232, 151, 0, 0.5);
+            }
+            100% {
+                box-shadow: 0 2px 8px rgba(232, 151, 0, 0.3);
+            }
+        }
+
+        .structure-direct-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.6s ease;
+            z-index: 1;
+        }
+
+        .structure-direct-btn:hover::before {
+            left: 100%;
+        }
+
+        .structure-direct-btn i {
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .structure-direct-btn:hover {
+            background: #942e2f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(148, 46, 47, 0.4);
+        }
+
+        .structure-direct-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        .structures-section {
+            padding: 1.5rem 0 2rem;
+        }
+
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .expandable-content.active {
+            max-height: 1000px;
+        }
+
+        .structure-details {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .structure-image {
+            height: 250px;
+            width: 100%;
+        }
+
+        .structure-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .structure-content {
+            padding: 1.5rem;
+        }
+
+        .structure-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #942e2f;
+            margin-bottom: 1rem;
+        }
+
+        .structure-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .structure-address {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .structure-direct-btn {
+            display: inline-block;
+            background: #e89700;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .structure-direct-btn:hover {
+            background: #942e2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .structure-details {
+                flex-direction: row;
+            }
+            
+            .structure-image {
+                width: 40%;
+                height: auto;
+            }
+            
+            .structure-content {
+                width: 60%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -812,7 +1253,6 @@
                 <li><a href="contatti.html">Contatti</a></li>
             </ul>
             <a href="prenota.html" class="book-now-btn">Prenota Ora</a>
-            <button class="mobile-menu-close" aria-label="Chiudi menu">&times;</button>
         </nav>
     </header>
 
@@ -828,58 +1268,79 @@
                 <span class="title-underline"></span>
             </h1>
             <p class="hero-description">
-                Scegli la struttura e prenota al miglior prezzo
+                Ottieni il miglior prezzo prenotando direttamente dal nostro sito
             </p>
+        </div>
+    </section>
+
+    <!-- Disclaimer Section -->
+    <section class="disclaimer-section">
+        <div class="container">
+            <div class="info-actions-container">
+                <p class="info-actions-text">
+                    <i class="fas fa-info-circle" style="color: #942e2f; margin-right: 8px;"></i>
+                    <strong>Consigliamo di verificare la disponibilità in entrambe:</strong> se una è al completo, potrebbe esserci posto nell'altra.
+                </p>
+            </div>
         </div>
     </section>
 
     <!-- Structures Section -->
     <section class="structures-section">
         <div class="container">
-            <div class="section-title">
-                <h2>Le Nostre Strutture</h2>
-            </div>
-            <div class="structures-grid">
-                <div class="structure-card">
-                    <div class="structure-image">
-                        <img src="images/Homepage/DL1/Marrone.jpg" alt="Dolce Laguna 1">
-                    </div>
-                    <div class="structure-content">
-                        <h3 class="structure-title">Dolce Laguna 1</h3>
-                        <p class="structure-description">
-                            Affittacamere di lusso con un design rustico e accogliente, che richiama lo stile tradizionale veneziano. Ideale per chi cerca un'atmosfera autentica e intima, a pochi passi dall'aeroporto di Venezia.
-                        </p>
-                        <div class="structure-address">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Via Alessandria 41/b - 30173</span>
+            <div class="expandable-buttons">
+                <!-- Dolce Laguna 1 -->
+                <div class="booking-expandable">
+                    <button class="booking-btn" id="dl1-btn" aria-expanded="false" aria-controls="dl1-content">
+                        <span>Prenota Dolce Laguna 1</span>
+                    </button>
+                    <div class="expandable-content" id="dl1-content">
+                        <div class="structure-details">
+                            <div class="structure-image">
+                                <img src="images/Homepage/DL1/Marrone.jpg" alt="Dolce Laguna 1">
+                            </div>
+                            <div class="structure-content">
+                                <h3 class="structure-title">Dolce Laguna 1</h3>
+                                <p class="structure-description">
+                                    Design rustico e accogliente che richiama lo stile tradizionale veneziano, a pochi passi dall'aeroporto di Venezia.
+                                </p>
+                                <div class="structure-address">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Via Alessandria 41/b - 30173</span>
+                                </div>
+                                <a href="https://book.octorate.com/octobook/site/ota/result.xhtml?id=1552&property=496902" class="structure-direct-btn" target="_blank" rel="noopener noreferrer">
+                                    Prenota Subito <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <a href="https://book.octorate.com/octobook/site/ota/result.xhtml?id=1552&property=496902" class="structure-btn" target="_blank" rel="noopener noreferrer">
-                            Prenota Dolce Laguna 1
-                        </a>
                     </div>
                 </div>
-
-                <div class="structure-card">
-                    <div class="structure-image">
-                        <img src="images/Homepage/DL2/azzurra.jpg" alt="Dolce Laguna 2">
-                    </div>
-                    <div class="structure-content">
-                        <h3 class="structure-title">Dolce Laguna 2</h3>
-                        <p class="structure-description">
-                            Affittacamere di lusso con un design contemporaneo e sofisticato, che combina eleganza e modernità. Perfetto per chi ama uno stile più raffinato e innovativo, con vista sulla laguna.
-                        </p>
-                        <div class="structure-address">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Via Alessandria 43/a - 30173</span>
+                <!-- Dolce Laguna 2 -->
+                <div class="booking-expandable">
+                    <button class="booking-btn" id="dl2-btn" aria-expanded="false" aria-controls="dl2-content">
+                        <span>Prenota Dolce Laguna 2</span>
+                    </button>
+                    <div class="expandable-content" id="dl2-content">
+                        <div class="structure-details">
+                            <div class="structure-image">
+                                <img src="images/Homepage/DL2/azzurra.jpg" alt="Dolce Laguna 2">
+                            </div>
+                            <div class="structure-content">
+                                <h3 class="structure-title">Dolce Laguna 2</h3>
+                                <p class="structure-description">
+                                    Design contemporaneo e sofisticato, che combina eleganza e modernità. Perfetto per chi ama uno stile più raffinato e innovativo, con vista sulla laguna.
+                                </p>
+                                <div class="structure-address">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Via Alessandria 43/a - 30173</span>
+                                </div>
+                                <a href="https://book.octorate.com/octobook/site/ota/result.xhtml?id=1552&property=274253" class="structure-direct-btn" target="_blank" rel="noopener noreferrer">
+                                    Prenota Subito <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <a href="https://book.octorate.com/octobook/site/ota/result.xhtml?id=1552&property=274253" class="structure-btn" target="_blank" rel="noopener noreferrer">
-                            Prenota Dolce Laguna 2
-                        </a>
                     </div>
                 </div>
-            </div>
-            <div class="availability-note">
-                Consigliamo di verificare la disponibilità in entrambe le strutture: se una è al completo, potrebbe esserci posto nell'altra.
             </div>
         </div>
     </section>
@@ -1027,7 +1488,6 @@
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
         const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-        const mobileMenuClose = document.querySelector('.mobile-menu-close');
         const body = document.body;
 
         function toggleMenu() {
@@ -1043,7 +1503,6 @@
         }
 
         mobileMenuBtn.addEventListener('click', toggleMenu);
-        mobileMenuClose.addEventListener('click', toggleMenu);
 
         if (window.innerWidth < 901) {
             mobileMenuOverlay.addEventListener('click', toggleMenu);
@@ -1086,13 +1545,68 @@
         });
 
         // Header Scroll Effect
-        window.addEventListener('scroll', () => {
+        function handleHeaderScroll() {
             const header = document.querySelector('.header');
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
+        }
+
+        // Esegui subito per impostare lo stato corretto dell'header
+        handleHeaderScroll();
+        
+        // Aggiungi l'event listener per lo scroll
+        window.addEventListener('scroll', handleHeaderScroll);
+        
+        // Gestione espansione dei contenuti per i pulsanti di prenotazione
+        document.addEventListener('DOMContentLoaded', function() {
+            const dl1Btn = document.getElementById('dl1-btn');
+            const dl2Btn = document.getElementById('dl2-btn');
+            const dl1Content = document.getElementById('dl1-content');
+            const dl2Content = document.getElementById('dl2-content');
+            
+            // Funzione per gestire l'espansione
+            function toggleExpand(button, content) {
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                
+                // Chiudi tutti i contenuti e ripristina le animazioni
+                dl1Btn.setAttribute('aria-expanded', 'false');
+                dl2Btn.setAttribute('aria-expanded', 'false');
+                dl1Content.classList.remove('active');
+                dl2Content.classList.remove('active');
+                dl1Btn.style.animation = 'pulse-booking1 2s infinite';
+                dl2Btn.style.animation = 'pulse-booking2 2s infinite';
+                
+                // Se era chiuso, aprilo e ferma l'animazione del pulsante
+                if (!isExpanded) {
+                    button.setAttribute('aria-expanded', 'true');
+                    content.classList.add('active');
+                    button.style.animation = 'none';
+                    
+                    // Scorri fino al contenuto espanso con un po' di offset
+                    setTimeout(() => {
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const yOffset = -headerHeight - 20;
+                        const y = content.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        
+                        window.scrollTo({
+                            top: y,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
+                }
+            }
+            
+            // Event listeners per i pulsanti
+            dl1Btn.addEventListener('click', function() {
+                toggleExpand(dl1Btn, dl1Content);
+            });
+            
+            dl2Btn.addEventListener('click', function() {
+                toggleExpand(dl2Btn, dl2Content);
+            });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
