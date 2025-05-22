@@ -467,12 +467,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 0;
+            border-radius: 50px;
             background: #e4e4e4;
             position: relative;
             padding: 0;
             margin-bottom: 2rem;
-            box-shadow: none;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
 
@@ -501,14 +501,15 @@
             width: 50%;
             height: 100%;
             background: linear-gradient(to right, #e8d19a, #e89700);
-            border-radius: 0;
+            border-radius: 50px;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: none;
+            box-shadow: 0 4px 12px rgba(232, 151, 0, 0.3);
         }
 
         .toggle-slider.night {
             left: 50%;
             background: linear-gradient(to right, #4a148c, #2a1a38);
+            box-shadow: 0 4px 12px rgba(74, 20, 140, 0.3);
         }
 
         .toggle-option i {
@@ -540,7 +541,7 @@
             position: relative;
             background: none;
             padding: 0;
-            border-radius: 0;
+            border-radius: 15px;
             box-shadow: none;
         }
 
@@ -560,12 +561,12 @@
             scroll-snap-align: start;
             position: relative;
             overflow: hidden;
-            border-radius: 0;
+            border-radius: 15px;
             height: 300px;
             box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
             transition: all 0.4s ease;
             border: none;
-            transform: skewX(-5deg);
+            cursor: pointer;
         }
 
         .carousel-item::before {
@@ -579,33 +580,53 @@
             z-index: 1;
             opacity: 0;
             transition: opacity 0.4s ease;
+            border-radius: 15px;
         }
 
         .carousel-item:hover::before {
             opacity: 1;
         }
 
+        .carousel-item::after {
+            content: '\f00e';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            color: white;
+            font-size: 2rem;
+            z-index: 2;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .carousel-item:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
         .carousel-item img {
-            width: calc(100% + 20px);
+            width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
-            transform: skewX(5deg) scale(1.05);
         }
 
         .carousel-item:hover {
-            transform: skewX(-5deg) translateY(-10px);
+            transform: translateY(-10px);
             box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
             z-index: 2;
         }
 
         .carousel-item:hover img {
-            transform: skewX(5deg) scale(1.1);
+            transform: scale(1.05);
         }
 
         .carousel-controls {
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             gap: 15px;
             margin-top: 20px;
             position: relative;
@@ -618,13 +639,13 @@
             border: none;
             width: 50px;
             height: 50px;
-            border-radius: 0;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
         }
@@ -653,7 +674,8 @@
         }
 
         .carousel-btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         .carousel-btn i {
@@ -666,21 +688,47 @@
         .day-gallery-content {
             background: linear-gradient(135deg, #f9f7f4, #e8d19a) !important;
             padding: 40px !important;
-            border-radius: 0 !important;
+            border-radius: 20px !important;
             margin-top: 0 !important;
             position: relative;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: dayGradientShift 10s infinite alternate;
         }
 
         .night-gallery-content {
             background: linear-gradient(135deg, #2a1a38, #1a0e2e) !important;
             padding: 40px !important;
-            border-radius: 0 !important;
+            border-radius: 20px !important;
             margin-top: 0 !important;
             position: relative;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: nightGradientShift 10s infinite alternate;
+        }
+
+        @keyframes dayGradientShift {
+            0% {
+                background: linear-gradient(135deg, #f9f7f4, #e8d19a) !important;
+            }
+            50% {
+                background: linear-gradient(135deg, #e8d19a, #e89700) !important;
+            }
+            100% {
+                background: linear-gradient(135deg, #f9f7f4, #e8d19a) !important;
+            }
+        }
+
+        @keyframes nightGradientShift {
+            0% {
+                background: linear-gradient(135deg, #2a1a38, #1a0e2e) !important;
+            }
+            50% {
+                background: linear-gradient(135deg, #1a0e2e, #4a148c) !important;
+            }
+            100% {
+                background: linear-gradient(135deg, #2a1a38, #1a0e2e) !important;
+            }
         }
 
         .day-gallery-content::before,
@@ -692,6 +740,7 @@
             width: 100%;
             height: 10px;
             background: #e89700;
+            border-radius: 20px 20px 0 0;
         }
 
         .night-gallery-content::before {
@@ -704,6 +753,20 @@
             padding: 40px;
             margin-top: 40px;
             position: relative;
+            border-radius: 20px;
+            animation: interiorGradientShift 15s infinite alternate;
+        }
+
+        @keyframes interiorGradientShift {
+            0% {
+                background: linear-gradient(135deg, #f9f7f4, #f2ede8);
+            }
+            50% {
+                background: linear-gradient(135deg, #f2ede8, #e8d19a);
+            }
+            100% {
+                background: linear-gradient(135deg, #f9f7f4, #f2ede8);
+            }
         }
 
         .gallery-section .carousel-section::before {
@@ -714,6 +777,115 @@
             width: 100%;
             height: 10px;
             background: #942e2f;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 2001;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+            color: #e89700;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2001;
+            padding: 0 20px;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: translateX(0);
+        }
+
+        .lightbox-prev {
+            transform: translateX(-20px) !important;
+            opacity: 0;
+        }
+
+        .lightbox-next {
+            transform: translateX(20px) !important;
+            opacity: 0;
+        }
+
+        .lightbox.active .lightbox-prev,
+        .lightbox.active .lightbox-next {
+            transform: translateX(0) !important;
+            opacity: 1;
+            transition: transform 0.5s ease 0.2s, opacity 0.5s ease 0.2s, background 0.3s ease;
+        }
+
+        .lightbox-nav button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1) !important;
         }
 
         /* Social Section */
@@ -1211,6 +1383,18 @@
     <!-- Toast Notification -->
     <div class="toast-container"></div>
 
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="Immagine ingrandita" class="lightbox-image">
+            <button class="lightbox-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="lightbox-nav">
+            <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -1340,6 +1524,97 @@
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
+            }
+        });
+
+        // Lightbox Functionality
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImage = document.querySelector('.lightbox-image');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const lightboxPrev = document.querySelector('.lightbox-prev');
+        const lightboxNext = document.querySelector('.lightbox-next');
+        let currentGallery = [];
+        let currentIndex = 0;
+
+        // Aggiunge funzionalità di clic a tutte le immagini del carosello
+        document.querySelectorAll('.carousel-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const imgSrc = img.getAttribute('src');
+                const imgAlt = img.getAttribute('alt');
+                
+                // Trova tutte le immagini nella stessa galleria
+                const carousel = this.closest('.carousel');
+                const galleryItems = carousel.querySelectorAll('.carousel-item img');
+                currentGallery = Array.from(galleryItems).map(img => ({
+                    src: img.getAttribute('src'),
+                    alt: img.getAttribute('alt')
+                }));
+                
+                // Trova l'indice dell'immagine cliccata
+                currentIndex = currentGallery.findIndex(item => item.src === imgSrc);
+                
+                // Imposta l'immagine nel lightbox
+                lightboxImage.setAttribute('src', imgSrc);
+                lightboxImage.setAttribute('alt', imgAlt);
+                
+                // Apri il lightbox con un'animazione
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Impedisce lo scorrimento
+            });
+        });
+
+        // Chiusura del lightbox
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Ripristina lo scorrimento
+        });
+        
+        // Chiusura cliccando fuori dall'immagine
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Navigazione precedente
+        lightboxPrev.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+            updateLightboxImage();
+        });
+
+        // Navigazione successiva
+        lightboxNext.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % currentGallery.length;
+            updateLightboxImage();
+        });
+
+        // Aggiorna l'immagine nel lightbox
+        function updateLightboxImage() {
+            // Aggiungi un'animazione di transizione
+            lightboxImage.style.opacity = '0';
+            
+            setTimeout(() => {
+                lightboxImage.setAttribute('src', currentGallery[currentIndex].src);
+                lightboxImage.setAttribute('alt', currentGallery[currentIndex].alt);
+                lightboxImage.style.opacity = '1';
+            }, 300);
+        }
+
+        // Navigazione con tastiera
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            } else if (e.key === 'ArrowLeft') {
+                currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+                updateLightboxImage();
+            } else if (e.key === 'ArrowRight') {
+                currentIndex = (currentIndex + 1) % currentGallery.length;
+                updateLightboxImage();
             }
         });
     </script>
