@@ -340,7 +340,7 @@
         /* Hero Section */
         .hero-section {
             position: relative;
-            height: 60vh;
+            height: 70vh;
             overflow: hidden;
             margin-top: 0;
         }
@@ -351,7 +351,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(0, 0, 0, 0.2); /* 20% di oscuramento */
         }
 
         .hero-image {
@@ -360,6 +360,7 @@
             object-fit: cover;
             transform: scale(1.05);
             transition: transform 0.8s ease;
+            filter: brightness(0.8); /* Ulteriore oscuramento */
         }
 
         .hero-section:hover .hero-image {
@@ -372,7 +373,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
         }
 
         .hero-content {
@@ -455,12 +456,12 @@
 
         /* Day-Night Toggle */
         .day-night-toggle {
-            max-width: 1000px;
-            margin: 0 auto 4rem;
+            max-width: 1200px;
+            margin: 0 auto 6rem;
             background: none;
             padding: 0;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .toggle-container {
@@ -468,18 +469,21 @@
             justify-content: space-between;
             align-items: center;
             border-radius: 50px;
-            background: #e4e4e4;
+            background: #f5f5f5;
             position: relative;
             padding: 0;
-            margin-bottom: 2rem;
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             overflow: hidden;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .toggle-option {
             flex: 1;
             text-align: center;
-            padding: 1.5rem;
+            padding: 1.2rem;
             cursor: pointer;
             position: relative;
             z-index: 2;
@@ -537,11 +541,11 @@
         /* Carousel */
         .carousel-section {
             margin: 0;
-            overflow: hidden;
+            overflow: visible;
             position: relative;
             background: none;
             padding: 0;
-            border-radius: 15px;
+            border-radius: 10px;
             box-shadow: none;
         }
 
@@ -551,20 +555,20 @@
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
             scroll-snap-type: x mandatory;
-            gap: 20px;
-            padding: 10px 0;
+            gap: 30px;
+            padding: 20px 0;
             position: relative;
         }
 
         .carousel-item {
-            flex: 0 0 calc(33.333% - 14px);
+            flex: 0 0 calc(50% - 15px); /* Immagini più grandi, solo 2 per riga */
             scroll-snap-align: start;
             position: relative;
             overflow: hidden;
-            border-radius: 15px;
-            height: 300px;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
+            border-radius: 10px;
+            height: 400px; /* Immagini più alte */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.5s ease;
             border: none;
             cursor: pointer;
         }
@@ -580,7 +584,7 @@
             z-index: 1;
             opacity: 0;
             transition: opacity 0.4s ease;
-            border-radius: 15px;
+            border-radius: 10px;
         }
 
         .carousel-item:hover::before {
@@ -611,12 +615,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.7s ease;
         }
 
         .carousel-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             z-index: 2;
         }
 
@@ -628,7 +632,7 @@
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 30px;
             position: relative;
             z-index: 10;
         }
@@ -688,23 +692,57 @@
         .day-gallery-content {
             background: linear-gradient(135deg, #f9f7f4, #e8d19a) !important;
             padding: 40px !important;
-            border-radius: 20px !important;
+            border-radius: 15px !important;
             margin-top: 0 !important;
             position: relative;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             animation: dayGradientShift 10s infinite alternate;
+            transition: all 0.8s ease;
         }
 
         .night-gallery-content {
             background: linear-gradient(135deg, #2a1a38, #1a0e2e) !important;
             padding: 40px !important;
-            border-radius: 20px !important;
+            border-radius: 15px !important;
             margin-top: 0 !important;
             position: relative;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             animation: nightGradientShift 10s infinite alternate;
+            transition: all 0.8s ease;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            opacity: 0.8;
+            animation: fadeInOut 2s infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 2rem;
+            margin-top: 8px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
         @keyframes dayGradientShift {
@@ -731,20 +769,15 @@
             }
         }
 
-        .day-gallery-content::before,
-        .night-gallery-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: #e89700;
-            border-radius: 20px 20px 0 0;
+        /* Fade Effect for Day/Night Transition */
+        .gallery-content-fade-out {
+            opacity: 0;
+            transform: translateY(10px);
         }
 
-        .night-gallery-content::before {
-            background: #4a148c;
+        .gallery-content-fade-in {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Interior Gallery */
@@ -1159,6 +1192,10 @@
             <p class="hero-description">
                 Esplora gli spazi interni ed esterni della nostra struttura
             </p>
+            <div class="scroll-indicator">
+                <span>Scorri per esplorare</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
         </div>
     </section>
 
@@ -1414,7 +1451,7 @@
     </script>
 
     <script>
-        // Day-Night Toggle
+        // Day-Night Toggle con transizioni fluide
         const dayOption = document.querySelector('.toggle-option.day');
         const nightOption = document.querySelector('.toggle-option.night');
         const toggleSlider = document.querySelector('.toggle-slider');
@@ -1422,22 +1459,58 @@
         const nightGalleryContent = document.querySelector('.night-gallery-content');
 
         dayOption.addEventListener('click', () => {
+            if (dayOption.classList.contains('active')) return;
+            
+            // Animazione toggle
             toggleSlider.classList.remove('night');
             dayOption.classList.add('active');
             nightOption.classList.remove('active');
-            dayGalleryContent.style.display = 'block';
-            nightGalleryContent.style.display = 'none';
+            
+            // Animazione fade out/in
+            nightGalleryContent.classList.add('gallery-content-fade-out');
+            
+            setTimeout(() => {
+                dayGalleryContent.style.display = 'block';
+                nightGalleryContent.style.display = 'none';
+                
+                // Forza un reflow
+                void dayGalleryContent.offsetWidth;
+                
+                // Rimuovi la classe fade-out e aggiungi fade-in
+                dayGalleryContent.classList.add('gallery-content-fade-in');
+                dayGalleryContent.classList.remove('gallery-content-fade-out');
+            }, 300);
         });
 
         nightOption.addEventListener('click', () => {
+            if (nightOption.classList.contains('active')) return;
+            
+            // Animazione toggle
             toggleSlider.classList.add('night');
             nightOption.classList.add('active');
             dayOption.classList.remove('active');
-            nightGalleryContent.style.display = 'block';
-            dayGalleryContent.style.display = 'none';
+            
+            // Animazione fade out/in
+            dayGalleryContent.classList.add('gallery-content-fade-out');
+            
+            setTimeout(() => {
+                nightGalleryContent.style.display = 'block';
+                dayGalleryContent.style.display = 'none';
+                
+                // Forza un reflow
+                void nightGalleryContent.offsetWidth;
+                
+                // Rimuovi la classe fade-out e aggiungi fade-in
+                nightGalleryContent.classList.add('gallery-content-fade-in');
+                nightGalleryContent.classList.remove('gallery-content-fade-out');
+            }, 300);
         });
 
-        // Carousel Functionality
+        // Inizializza le classi
+        dayGalleryContent.classList.add('gallery-content-fade-in');
+        nightGalleryContent.classList.add('gallery-content-fade-out');
+
+        // Carousel Functionality con auto-scroll iniziale
         function setupCarousel(carouselId) {
             const carousel = document.querySelector(`.${carouselId}`);
             const prevBtn = document.querySelector(`.prev-btn[data-target="${carouselId}"]`);
@@ -1445,14 +1518,43 @@
             
             if (!carousel || !prevBtn || !nextBtn) return;
             
-            const scrollAmount = carousel.querySelector('.carousel-item').offsetWidth + 16; // Width + gap
+            const scrollAmount = carousel.querySelector('.carousel-item').offsetWidth + 30; // Width + gap
+            
+            // Auto-scroll iniziale
+            let autoScrollInterval;
+            let autoScrollCount = 0;
+            
+            const startAutoScroll = () => {
+                autoScrollInterval = setInterval(() => {
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    autoScrollCount++;
+                    
+                    if (autoScrollCount >= 2) {
+                        clearInterval(autoScrollInterval);
+                    }
+                }, 2000);
+            };
+            
+            // Avvia auto-scroll dopo un delay
+            setTimeout(startAutoScroll, 1000);
             
             prevBtn.addEventListener('click', () => {
                 carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                clearInterval(autoScrollInterval); // Ferma l'auto-scroll se l'utente interagisce
             });
             
             nextBtn.addEventListener('click', () => {
                 carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                clearInterval(autoScrollInterval); // Ferma l'auto-scroll se l'utente interagisce
+            });
+            
+            // Ferma l'auto-scroll se l'utente interagisce con il carousel
+            carousel.addEventListener('mousedown', () => {
+                clearInterval(autoScrollInterval);
+            });
+            
+            carousel.addEventListener('touchstart', () => {
+                clearInterval(autoScrollInterval);
             });
         }
 
