@@ -5,7 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript">
         var _iub = _iub || [];
-        _iub.csConfiguration = {"siteId":4037558,"cookiePolicyId":36967651,"lang":"it","storage":{"useSiteId":true},"domain":"dolcelaguna.com"};
+        _iub.csConfiguration = {
+            "askConsentAtCookiePolicyUpdate": true,
+            "countryDetection": true,
+            "enableLgpd": true,
+            "enableUspr": true,
+            "floatingPreferencesButtonDisplay": "bottom-right",
+            "invalidateConsentWithoutLog": true,
+            "perPurposeConsent": true,
+            "siteId": 4037558,
+            "cookiePolicyId": 36967651,
+            "lang": "it",
+            "banner": {
+                "acceptButtonDisplay": true,
+                "closeButtonRejects": true,
+                "customizeButtonDisplay": true,
+                "explicitWithdrawal": true,
+                "listPurposes": true,
+                "position": "float-bottom-center",
+                "rejectButtonDisplay": true
+            },
+            "storage": {"useSiteId":true},
+            "domain": "dolcelaguna.com"
+        };
     </script>
     <script type="text/javascript" src="https://cs.iubenda.com/autoblocking/4037558.js"></script>
     <script type="text/javascript" src="//cdn.iubenda.com/cs/gpp/stub.js"></script>
@@ -701,7 +723,6 @@
             }
 
             .nav-links,
-            .call-now-btn,
             .book-now-btn {
                 display: none;
             }
@@ -814,23 +835,6 @@
                 font-size: 1rem;
             }
 
-            .mobile-actions {
-                gap: 0.8rem;
-                margin-top: 2rem;
-            }
-
-            .mobile-menu .call-now-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1rem;
-            }
-
-            .mobile-menu .book-now-btn {
-                font-size: 1rem;
-                padding: 0.6rem 1rem;
-                height: 45px;
-            }
-
             .section-spacing {
                 padding: 3rem 0;
             }
@@ -920,23 +924,6 @@
             .mobile-book-now-btn {
                 width: 100%;
                 text-align: center;
-            }
-
-            .mobile-actions {
-                gap: 0.6rem;
-                margin-top: 1.5rem;
-            }
-
-            .mobile-menu .call-now-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 0.9rem;
-            }
-
-            .mobile-menu .book-now-btn {
-                font-size: 0.9rem;
-                padding: 0.5rem 0.8rem;
-                height: 40px;
             }
         }
 
@@ -1034,24 +1021,6 @@
             margin-left: auto;
         }
 
-        .call-now-btn {
-            background: #2563eb;
-            color: white;
-            padding: 0.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            min-height: 44px;
-            width: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse-blue 2s infinite;
-            margin-right: 1rem;
-        }
-
         .book-now-btn {
             background: #e89700;
             color: white;
@@ -1066,21 +1035,6 @@
             align-items: center;
             justify-content: center;
             animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse-blue {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
-            }
-            70% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
-            }
         }
 
         @keyframes pulse {
@@ -1248,51 +1202,15 @@
             justify-content: center;
         }
 
-        .mobile-actions {
-            display: flex;
-            flex-direction: row;
-            gap: 1rem;
-            margin-top: 3rem;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .mobile-menu .call-now-btn {
-            font-size: 1.1rem;
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.6s;
-            margin: 0;
-            width: 50px;
-            height: 50px;
-            padding: 0;
-            flex-shrink: 0;
-        }
-
         .mobile-menu .book-now-btn {
-            font-size: 1.1rem;
+            margin-top: 3rem;
+            font-size: 1.2rem;
             opacity: 0;
             transform: translateX(50px);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s;
-            margin: 0;
-            flex: 1;
-            padding: 0.7rem 1.2rem;
-            white-space: nowrap;
-            height: 50px;
-        }
-
-        .mobile-menu .call-now-btn {
-            animation: pulse-blue 2s infinite;
-            transition-delay: 0.6s;
-        }
-
-        .mobile-menu .book-now-btn {
             animation: pulse 2s infinite;
-            transition-delay: 0.7s;
         }
 
-        .mobile-menu.active .call-now-btn,
         .mobile-menu.active .book-now-btn {
             opacity: 1;
             transform: translateX(0);
@@ -1375,29 +1293,13 @@
                 padding: 0.5rem 0;
             }
 
-            .mobile-actions {
-                margin-top: 1.5rem;
-                gap: 0.8rem;
-            }
-
-            .mobile-menu .call-now-btn {
-                transform: none;
-                opacity: 0;
-                font-size: 1rem;
-                margin: 0;
-                width: 45px;
-                height: 45px;
-            }
-
             .mobile-menu .book-now-btn {
                 transform: none;
                 opacity: 0;
+                margin-top: 1.5rem;
                 font-size: 1rem;
-                margin: 0;
-                height: 45px;
             }
 
-            .mobile-menu.active .call-now-btn,
             .mobile-menu.active .book-now-btn {
                 opacity: 1;
             }
@@ -1896,6 +1798,9 @@
             width: 100%;
             height: 400px;
             margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             position: relative;
             z-index: 1;
             display: block !important;
@@ -1905,6 +1810,8 @@
             width: 100%;
             height: 100%;
             border: none;
+            position: relative;
+            z-index: 2;
         }
 
         .feature-modal-actions {
@@ -2153,9 +2060,6 @@
                 <img src="/images/logo-dolcelaguna.png" alt="Dolce Laguna" class="logo-img" />
             </a>
             <div class="header-actions">
-                <a href="tel:+393341817894" class="call-now-btn" aria-label="Chiamaci">
-                    <i class="fas fa-phone"></i>
-                </a>
                 <a href="/prenota.html" class="book-now-btn">Prenota Ora</a>
                 <button class="mobile-menu-btn" aria-label="Apri menu" aria-expanded="false">
                     <span class="menu-icon"></span>
@@ -2175,12 +2079,7 @@
                 <li><a href="/contatti.html">Contatti</a></li>
                 <li><a href="/informazioni.html">Informazioni</a></li>
             </ul>
-            <div class="mobile-actions">
-                <a href="tel:+393341817894" class="call-now-btn" aria-label="Chiamaci">
-                    <i class="fas fa-phone"></i>
-                </a>
-                <a href="/prenota.html" class="book-now-btn">Prenota Ora</a>
-            </div>
+            <a href="/prenota.html" class="book-now-btn">Prenota Ora</a>
             <button class="mobile-menu-close" aria-label="Chiudi menu">&times;</button>
         </nav>
     </header>
