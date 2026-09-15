@@ -1896,6 +1896,709 @@
             padding: 1rem;
         }
     </style>
+
+    <!-- Mobile Menu Override -->
+    <style>
+        .mobile-menu-btn {
+                display: block;
+            }
+
+            .carousel {
+                height: 53vh;
+                /* Ridotto leggermente anche su mobile */
+            }
+
+            .carousel-title {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .spaces-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rooms-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .section-spacing {
+                padding: 4rem 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .feature-title {
+                font-size: 1.3rem;
+            }
+
+            .feature-description {
+                font-size: 1rem;
+            }
+
+            .room-card {
+                margin-bottom: 1.5rem;
+            }
+
+            .room-title {
+                font-size: 1.3rem;
+            }
+
+            .room-description {
+                font-size: 1rem;
+            }
+
+            .space-card {
+                margin-bottom: 2rem;
+            }
+
+            .space-title {
+                font-size: 1.5rem;
+            }
+
+            .space-description {
+                font-size: 1rem;
+            }
+
+            .review-text {
+                font-size: 1.1rem;
+            }
+
+            .review-author {
+                font-size: 1.1rem;
+            }
+
+            .reviews-section {
+                min-height: 60vh;
+                padding: 4rem 0;
+            }
+
+            .review-slide {
+                padding: 2rem;
+            }
+
+            .view-all-btn {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .carousel {
+                height: 46vh;
+                /* Ridotto leggermente su schermi più piccoli */
+            }
+
+            .carousel-title {
+                font-size: 2rem;
+            }
+
+            .carousel-description {
+                font-size: 1rem;
+            }
+
+            .mobile-actions {
+                gap: 0.8rem;
+                margin-top: 2rem;
+            }
+
+            .mobile-menu .call-now-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .mobile-menu .book-now-btn {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+                height: 45px;
+            }
+
+            .section-spacing {
+                padding: 3rem 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .feature-card {
+                padding: 1.2rem;
+            }
+
+            .feature-icon {
+                font-size: 2rem;
+            }
+
+            .rooms-filter {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .filter-btn {
+                width: 100%;
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            .room-feature {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .space-feature {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.2rem;
+            }
+
+            .review-slide {
+                padding: 1.5rem;
+            }
+
+            .view-all-btn,
+            .view-all-reviews a {
+                font-size: 1.1rem;
+                padding: 0.8rem 0;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .carousel {
+                height: 60vh;
+            }
+
+            .carousel-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+
+            .feature-card {
+                padding: 1rem;
+            }
+
+            .feature-title {
+                font-size: 1.2rem;
+            }
+
+            .room-title {
+                font-size: 1.2rem;
+            }
+
+            .space-title {
+                font-size: 1.3rem;
+            }
+
+            .review-text {
+                font-size: 1rem;
+            }
+
+            .mobile-nav-links a {
+                font-size: 1.2rem;
+                padding: 1rem 0;
+            }
+
+            .mobile-book-now-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .mobile-actions {
+                gap: 0.6rem;
+                margin-top: 1.5rem;
+            }
+
+            .mobile-menu .call-now-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+
+            .mobile-menu .book-now-btn {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.8rem;
+                height: 40px;
+            }
+        }
+
+        /* Touch Optimization */
+        .touch-target {
+            min-height: 44px;
+            min-width: 44px;
+            padding: 0.8rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            padding: 8px;
+            margin: 0 4px;
+        }
+
+        .filter-btn,
+        .mobile-nav-links a,
+        .view-all-btn,
+        .view-all-reviews a {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Scroll Lock */
+        body.menu-open,
+        body.modal-open {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+        }
+
+        /* Modal & Menu Mobile Improvements */
+        .mobile-menu,
+        .modal {
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
+
+        .modal.active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+        }
+
+        /* Header Mobile First */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: transparent;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            z-index: 1002;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-left: auto;
+        }
+
+        .call-now-btn {
+            background: #2563eb;
+            color: white;
+            padding: 0.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-blue 2s infinite;
+            margin-right: 1rem;
+        }
+
+        .book-now-btn {
+            background: #e89700;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse-blue {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+            }
+
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(232, 151, 0, 0.4);
+            }
+
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(232, 151, 0, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(232, 151, 0, 0);
+            }
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            width: 44px;
+            height: 44px;
+            position: relative;
+            z-index: 1002;
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 2px;
+            background: #942e2f;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon::before,
+        .menu-icon::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background: #942e2f;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon::before {
+            top: -8px;
+        }
+
+        .menu-icon::after {
+            bottom: -8px;
+        }
+
+        .header.scrolled .menu-icon,
+        .header.scrolled .menu-icon::before,
+        .header.scrolled .menu-icon::after {
+            background: #942e2f;
+        }
+
+        .mobile-menu-btn.active .menu-icon {
+            background: transparent;
+        }
+
+        .mobile-menu-btn.active .menu-icon::before {
+            transform: rotate(45deg);
+            top: 0;
+            background: #942e2f;
+        }
+
+        .mobile-menu-btn.active .menu-icon::after {
+            transform: rotate(-45deg);
+            bottom: 0;
+            background: #942e2f;
+        }
+
+        /* ==========================================================================
+           MODERN LUXURY SLIDING DRAWER MENU
+           ========================================================================== */
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(18, 7, 8, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease;
+            z-index: 10001;
+            pointer-events: none;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: min(390px, 88vw);
+            height: 100vh;
+            height: 100dvh;
+            background: #ffffff;
+            z-index: 10002;
+            box-shadow: -10px 0 35px rgba(0, 0, 0, 0.22);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            transform: translateX(105%);
+            transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+            border-left: 1px solid rgba(200, 169, 126, 0.25);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.4rem 1.6rem 1rem;
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid rgba(200, 169, 126, 0.2);
+        }
+
+        .mobile-menu-logo img {
+            max-height: 44px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .mobile-menu-close {
+            background: #f8f6f3;
+            border: 1px solid rgba(148, 46, 47, 0.15);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: #942e2f;
+            font-size: 1.15rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-menu-close:hover {
+            background: #942e2f;
+            color: #ffffff;
+            transform: rotate(90deg) scale(1.05);
+            border-color: #942e2f;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            padding: 1rem 1.4rem;
+            margin: 0;
+            flex: 1 0 auto;
+            width: 100%;
+        }
+
+        .mobile-nav-links li {
+            margin: 0.35rem 0;
+            width: 100%;
+        }
+
+        .mobile-nav-links a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 1rem;
+            font-family: 'Cinzel', 'Playfair Display', serif;
+            font-size: 1.12rem;
+            color: #2b1f20;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.25s ease;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .mobile-nav-links a::after {
+            content: '\f105';
+            font-family: 'Font Awesome 5 Free', 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.85rem;
+            color: #c8a97e;
+            opacity: 0.5;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            background: rgba(148, 46, 47, 0.06);
+            color: #942e2f;
+            transform: translateX(4px);
+        }
+
+        .mobile-nav-links a:hover::after {
+            opacity: 1;
+            transform: translateX(3px);
+            color: #942e2f;
+        }
+
+        .mobile-nav-links a.active {
+            background: rgba(148, 46, 47, 0.08);
+            color: #942e2f;
+            font-weight: 600;
+            border-left: none;
+        }
+
+        .mobile-nav-links a.active::after {
+            color: #942e2f;
+            opacity: 0.85;
+        }
+
+        /* Tasti Prenota Dinamici e Proporzionati nel Menu */
+        .mobile-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 1.2rem 1.4rem 1.8rem;
+            width: 100%;
+            margin-top: auto;
+            align-items: center;
+            background: #fdfbf9;
+            border-top: 1px solid rgba(200, 169, 126, 0.25);
+        }
+
+        .menu-btn-book {
+            width: 100%;
+            max-width: 320px;
+            height: 48px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #e89700 0%, #d48200 100%);
+            color: #ffffff !important;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.02rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(232, 151, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn-book:hover {
+            background: linear-gradient(135deg, #f5a300 0%, #e08b00 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232, 151, 0, 0.42);
+        }
+
+        .menu-btn-tour {
+            width: 100%;
+            max-width: 320px;
+            height: 46px;
+            border-radius: 50px;
+            background: #942e2f;
+            color: #ffffff !important;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.96rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(148, 46, 47, 0.22);
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn-tour:hover {
+            background: #7d2425;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(148, 46, 47, 0.35);
+        }
+
+        .menu-btn-call {
+            width: 100%;
+            max-width: 320px;
+            height: 40px;
+            border-radius: 50px;
+            background: #f0f4ff;
+            border: 1px solid #bfdbfe;
+            color: #1d4ed8 !important;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .menu-btn-call:hover {
+            background: #dbeafe;
+            transform: translateY(-1px);
+        }
+
+        body.menu-open {
+            overflow: hidden !important;
+            touch-action: none;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -1915,23 +2618,28 @@
             </div>
         </div>
         <div class="mobile-menu-overlay" tabindex="-1"></div>
-        <nav class="mobile-menu">
-            <div class="logo">
-                <img src="/images/logo-dolcelaguna.png" alt="Dolce Laguna" class="logo-img" />
+        <nav class="mobile-menu" aria-label="Navigazione principale">
+            <div class="mobile-menu-header">
+                <a href="index.html" class="mobile-menu-logo">
+                    <img src="images/logo-dolcelaguna.png" alt="Dolce Laguna" />
+                </a>
+                <button class="mobile-menu-close" aria-label="Chiudi menu">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             <ul class="mobile-nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/camere.html">Camere</a></li>
-                <li><a href="/servizi.html">Servizi</a></li>
-                <li><a href="/galleria.html">Galleria</a></li>
-                <li><a href="/contatti.html">Contatti</a></li>
-                <li><a href="/informazioni.html">Informazioni</a></li>
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="camere.html" class="active">Camere</a></li>
+                <li><a href="tour.html">Tour & Escursioni</a></li>
+                <li><a href="servizi.html">Servizi</a></li>
+                <li><a href="galleria.html">Galleria</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+                <li><a href="informazioni.html">Informazioni</a></li>
             </ul>
             <div class="mobile-actions">
-                <a href="tel:+393341817894" class="call-now-btn" aria-label="Chiamaci">
-                    <i class="fas fa-phone"></i>
+                <a href="prenota.html" class="menu-btn-book">
+                    <i class="fas fa-calendar-check"></i> Prenota Ora
                 </a>
-                <a href="/prenota.html" class="book-now-btn">Prenota Ora</a>
             </div>
         </nav>
     </header>
@@ -2444,6 +3152,7 @@
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="camere.html">Camere</a></li>
+                        <li><a href="tour.html">Tour & Escursioni</a></li>
                         <li><a href="servizi.html">Servizi</a></li>
                         <li><a href="galleria.html">Galleria</a></li>
                         <li><a href="contatti.html">Contatti</a></li>
@@ -2480,314 +3189,70 @@
             window.scrollTo(0, 0);
         };
         
-        // Mobile Menu Functionality
+        // Mobile Menu migliorato
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
         const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
         const body = document.body;
-        
+
         function toggleMenu() {
             const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
             mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
             mobileMenuBtn.classList.toggle('active');
             mobileMenu.classList.toggle('active');
-            
+
             if (window.innerWidth < 901) {
                 mobileMenuOverlay.classList.toggle('active');
                 body.style.overflow = isExpanded ? '' : 'hidden';
             }
         }
-        
+
         mobileMenuBtn.addEventListener('click', toggleMenu);
-        
+
         if (window.innerWidth < 901) {
             mobileMenuOverlay.addEventListener('click', toggleMenu);
         }
-        
-        // Header Scroll Effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+
+        // Chiudi il menu al click fuori (solo desktop)
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth >= 901 &&
+                !mobileMenu.contains(e.target) &&
+                !mobileMenuBtn.contains(e.target) &&
+                mobileMenu.classList.contains('active')) {
+                toggleMenu();
             }
         });
 
-        // Toggle DL1/DL2
-        const toggleOptions = document.querySelectorAll('.toggle-option');
-        const toggleSlider = document.querySelector('.toggle-slider');
-        const dl1Content = document.getElementById('dl1-content');
-        const dl2Content = document.getElementById('dl2-content');
-        const dl1Selector = document.getElementById('dl1-room-selector');
-        const dl2Selector = document.getElementById('dl2-room-selector');
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            // Imposta DL1 come attivo all'inizio
-            const dl1Option = document.querySelector('.toggle-option.dl1');
-            if (dl1Option) {
-                // Mostra DL1 e nascondi DL2
-                dl1Content.style.display = 'block';
-                dl2Content.style.display = 'none';
-                dl1Selector.style.display = 'flex';
-                dl2Selector.style.display = 'none';
-                
-                // Attiva la prima camera di DL1
-                const firstDL1Link = document.querySelector('.room-type-link[data-structure="dl1"]');
-                if (firstDL1Link) {
-                    activateRoomType(firstDL1Link);
-                }
-            }
-        });
-        
-        toggleOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                // Aggiorna lo stato visivo del toggle
-                toggleOptions.forEach(opt => opt.classList.remove('active'));
-                this.classList.add('active');
-                
-                const structure = this.dataset.structure;
-                
-                // Sposta lo slider
-                if (structure === 'dl2') {
-                    toggleSlider.classList.add('dl2');
-                } else {
-                    toggleSlider.classList.remove('dl2');
-                }
-                
-                // Nascondi/Mostra il contenuto appropriato
-                if (structure === 'dl1') {
-                    dl1Content.style.display = 'block';
-                    dl2Content.style.display = 'none';
-                    dl1Selector.style.display = 'flex';
-                    dl2Selector.style.display = 'none';
-                } else {
-                    dl1Content.style.display = 'none';
-                    dl2Content.style.display = 'block';
-                    dl1Selector.style.display = 'none';
-                    dl2Selector.style.display = 'flex';
-                }
-            });
-        });
-
-        // Gestione room-type-link (stile servizi.html)
-        const roomTypeLinks = document.querySelectorAll('.room-type-link');
-        
-        function activateRoomType(button) {
-            // Rimuovi active da tutti i link nella stessa struttura
-            const structure = button.dataset.structure;
-            document.querySelectorAll(`.room-type-link[data-structure="${structure}"]`).forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Aggiungi active al pulsante cliccato
-            button.classList.add('active');
-            
-            // Non nascondiamo più i contenuti, tutti sono visibili
-        }
-        
-        roomTypeLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Preveniamo il comportamento predefinito per controllare lo scroll
-                e.preventDefault();
-                
-                // Aggiorniamo lo stato attivo
-                activateRoomType(this);
-                
-                // Calcola offset per header e room-selector
-                const header = document.querySelector('.header');
-                const roomSelector = document.querySelector('.room-type-index');
-                const dlToggle = document.querySelector('.dl-toggle');
-                const totalOffset = header.offsetHeight + roomSelector.offsetHeight + dlToggle.offsetHeight + 30; // margine extra
-                
-                // Aggiusta la posizione di scroll considerando l'offset
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - totalOffset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Carousel Functionality
-        function setupCarousel(carouselId) {
-            const carousel = document.querySelector(`.${carouselId}`);
-            const prevBtn = document.querySelector(`.prev-btn[data-target="${carouselId}"]`);
-            const nextBtn = document.querySelector(`.next-btn[data-target="${carouselId}"]`);
-            
-            if (!carousel || !prevBtn || !nextBtn) return;
-            
-            const scrollAmount = carousel.querySelector('.carousel-item').offsetWidth + 20; // Width + gap
-            
-            prevBtn.addEventListener('click', () => {
-                carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            });
-            
-            nextBtn.addEventListener('click', () => {
-                carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            });
-        }
-
-        // Set up each carousel
-        document.addEventListener('DOMContentLoaded', () => {
-            setupCarousel('blue-deluxe-carousel');
-            setupCarousel('marrone-carousel');
-            setupCarousel('pavone-carousel');
-            setupCarousel('tripla-carousel');
-            setupCarousel('singola-carousel');
-            setupCarousel('dl2-doppia-carousel');
-            setupCarousel('quadrupla-carousel');
-            
-            // Imposta DL1 come attivo all'inizio
-            const dl1Option = document.querySelector('.toggle-option.dl1');
-            if (dl1Option) {
-                dl1Option.click();
-            }
-            
-            // Imposta il tipo di camera iniziale per DL1
-            const doppiaLink = document.querySelector('.room-type-link.doppia[data-structure="dl1"]');
-            if (doppiaLink) {
-                doppiaLink.click();
-            }
-            
-            // Gestione degli indicatori di scorrimento
-            function updateScrollIndicators(index) {
-                const scrollLeft = index.scrollLeft;
-                const maxScrollLeft = index.scrollWidth - index.clientWidth;
-                
-                const leftIndicator = index.querySelector('.scroll-indicator.left');
-                const rightIndicator = index.querySelector('.scroll-indicator.right');
-                
-                if (leftIndicator && rightIndicator) {
-                    leftIndicator.style.opacity = scrollLeft > 20 ? '1' : '0';
-                    rightIndicator.style.opacity = scrollLeft < maxScrollLeft - 20 ? '1' : '0';
-                }
-            }
-            
-            const roomIndices = document.querySelectorAll('.room-type-index');
-            roomIndices.forEach(index => {
-                index.addEventListener('scroll', () => {
-                    updateScrollIndicators(index);
-                });
-                
-                // Inizializza lo stato degli indicatori
-                setTimeout(() => {
-                    updateScrollIndicators(index);
-                }, 100);
-                
-                // Aggiungi event listener per i pulsanti di scorrimento
-                const leftIndicator = index.querySelector('.scroll-indicator.left');
-                const rightIndicator = index.querySelector('.scroll-indicator.right');
-                
-                if (leftIndicator) {
-                    leftIndicator.addEventListener('click', () => {
-                        index.scrollBy({ left: -200, behavior: 'smooth' });
-                    });
-                }
-                
-                if (rightIndicator) {
-                    rightIndicator.addEventListener('click', () => {
-                        index.scrollBy({ left: 200, behavior: 'smooth' });
-                    });
-                }
-            });
-        });
-
-        // Lightbox Functionality
-        const lightbox = document.querySelector('.lightbox');
-        const lightboxImage = document.querySelector('.lightbox-image');
-        const lightboxClose = document.querySelector('.lightbox-close');
-        const lightboxPrev = document.querySelector('.lightbox-prev');
-        const lightboxNext = document.querySelector('.lightbox-next');
-        let currentGallery = [];
-        let currentIndex = 0;
-
-        // Aggiunge funzionalità di clic a tutte le immagini del carosello
-        document.querySelectorAll('.carousel-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const img = this.querySelector('img');
-                const imgSrc = img.getAttribute('src');
-                const imgAlt = img.getAttribute('alt');
-                
-                // Trova tutte le immagini nella stessa galleria
-                const carousel = this.closest('.carousel');
-                const galleryItems = carousel.querySelectorAll('.carousel-item img');
-                currentGallery = Array.from(galleryItems).map(img => ({
-                    src: img.getAttribute('src'),
-                    alt: img.getAttribute('alt')
-                }));
-                
-                // Trova l'indice dell'immagine cliccata
-                currentIndex = currentGallery.findIndex(item => item.src === imgSrc);
-                
-                // Imposta l'immagine nel lightbox
-                lightboxImage.setAttribute('src', imgSrc);
-                lightboxImage.setAttribute('alt', imgAlt);
-                
-                // Apri il lightbox con un'animazione
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Impedisce lo scorrimento
-            });
-        });
-
-        // Chiusura del lightbox
-        lightboxClose.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = ''; // Ripristina lo scorrimento
-        });
-        
-        // Chiusura cliccando fuori dall'immagine
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-
-        // Navigazione precedente
-        lightboxPrev.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
-            updateLightboxImage();
-        });
-
-        // Navigazione successiva
-        lightboxNext.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % currentGallery.length;
-            updateLightboxImage();
-        });
-
-        // Aggiorna l'immagine nel lightbox
-        function updateLightboxImage() {
-            // Aggiungi un'animazione di transizione
-            lightboxImage.style.opacity = '0';
-            
-            setTimeout(() => {
-                lightboxImage.setAttribute('src', currentGallery[currentIndex].src);
-                lightboxImage.setAttribute('alt', currentGallery[currentIndex].alt);
-                lightboxImage.style.opacity = '1';
-            }, 300);
-        }
-
-        // Navigazione con tastiera
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-            
-            if (e.key === 'Escape') {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            } else if (e.key === 'ArrowLeft') {
-                currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
-                updateLightboxImage();
-            } else if (e.key === 'ArrowRight') {
-                currentIndex = (currentIndex + 1) % currentGallery.length;
-                updateLightboxImage();
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                toggleMenu();
             }
         });
-    </script>
+
+        // Focus management per accessibilità
+        mobileMenu.addEventListener('keydown', e => {
+            if (e.key === 'Tab') {
+                const focusableElements = mobileMenu.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
         (function (w,d) {

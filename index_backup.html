@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18157627787"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'AW-18157627787');
+        </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript">
@@ -33,6 +42,7 @@
     <script type="text/javascript" src="//cdn.iubenda.com/cs/gpp/stub.js"></script>
     <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
     <title>Dolce Laguna - Affittacamere a Venezia</title>
+    <link rel="icon" href="/images/favicondl.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -671,17 +681,23 @@
             color: #c8a97e;
         }
 
-        .footer-map {
-            height: 200px;
-            border-radius: 8px;
+        /* Rende la mappa adattabile al footer */
+        .map-responsive {
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 0;
+            position: relative;
+            height: 250px;
+            border-radius: 12px;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .footer-map iframe {
-            width: 100%;
+        .map-responsive iframe {
+            left: 0;
+            top: 0;
             height: 100%;
-            border: none;
+            width: 100%;
+            position: absolute;
         }
 
         .footer-bottom {
@@ -2471,14 +2487,14 @@
                 
                 <div class="footer-section">
                     <h3 class="footer-title">La nostra posizione</h3>
-                    <div class="footer-map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.3442782456584!2d12.327831376889761!3d45.50332197107633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477eb4c7a6b55555%3A0x8d87f65f4d94d894!2sDolce%20Laguna%20Affittacamere!5e0!3m2!1sit!2sit!4v1713633031123!5m2!1sit!2sit"
-                            width="100%"
-                            height="100%"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy"
+                    <div class="map-responsive">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.8841022064543!2d12.330833376757538!3d45.50236103153545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477eb76288607185%3A0x6b49911910629ec2!2sDolce%20Laguna!5e0!3m2!1sit!2sit!4v1713261600000!5m2!1sit!2sit" 
+                            width="100%" 
+                            height="250" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
