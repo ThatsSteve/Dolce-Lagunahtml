@@ -94,7 +94,9 @@
         }
 
         .header.scrolled {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -996,26 +998,79 @@
         .flyer-features-list {
             list-style: none;
             margin-bottom: 2rem;
+            padding: 0;
         }
 
         .flyer-features-list li {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.8rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.85rem;
             font-size: 0.95rem;
             color: rgba(255, 255, 255, 0.9);
-        }
-
-        @media (max-width: 900px) {
-            .flyer-features-list li {
-                justify-content: center;
-            }
+            line-height: 1.5;
+            text-align: left;
         }
 
         .flyer-features-list li i {
             color: #e89700;
             font-size: 1.1rem;
+            margin-top: 0.18rem;
+            flex-shrink: 0;
+        }
+
+        .flyer-features-list li span {
+            flex: 1;
+            text-align: left;
+        }
+
+        .flyer-btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .flyer-content h2 {
+                font-size: 1.9rem;
+            }
+
+            .flyer-features-list {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                max-width: 380px;
+                width: 100%;
+                margin: 0 auto 2rem;
+                padding: 0 0.5rem;
+                box-sizing: border-box;
+            }
+
+            .flyer-features-list li {
+                justify-content: flex-start;
+                text-align: left;
+                width: 100%;
+            }
+
+            .flyer-btn-group {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.85rem;
+                width: 100%;
+                max-width: 380px;
+                margin: 0 auto;
+                box-sizing: border-box;
+            }
+
+            .flyer-btn-group .btn-primary-tour,
+            .flyer-btn-group .btn-secondary-tour {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                box-sizing: border-box;
+            }
         }
 
         /* Directions / How to reach */
@@ -1756,7 +1811,9 @@
         }
 
         .header.scrolled {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -2243,13 +2300,13 @@
                     </p>
 
                     <ul class="flyer-features-list">
-                        <li><i class="fas fa-check-circle"></i> Mappa chiara dei meeting point a San Marco e Ferrovia</li>
-                        <li><i class="fas fa-check-circle"></i> Orari di partenza e rientro programmati</li>
-                        <li><i class="fas fa-check-circle"></i> Assistenza dedicata per gli ospiti</li>
-                        <li><i class="fas fa-check-circle"></i> Biglietto online istantaneo o acquistabile a bordo</li>
+                        <li><i class="fas fa-check-circle"></i> <span>Mappa chiara dei meeting point a San Marco e Ferrovia</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Orari di partenza e rientro programmati</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Assistenza dedicata per gli ospiti</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Biglietto online istantaneo o acquistabile a bordo</span></li>
                     </ul>
 
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <div class="flyer-btn-group">
                         <a href="https://bit.ly/Escursioni_DolceLaguna" target="_blank" rel="noopener" class="btn-primary-tour">
                             <i class="fas fa-bolt"></i> Prenota Online con GT1937
                         </a>
